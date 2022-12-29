@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import { useState } from "react";
-import img from "../Assets/profile.png";
+// import img from "../Assets/profile.png";
 const url = "http://localhost:5000/api/v1/products";
 let user;
 
@@ -40,7 +40,7 @@ const Profile = () => {
       const {
         data: {
           image: { src },
-          public_id,
+          // public_id,
         },
       } = await axios.post(`${url}/profile`, formData, {
         headers: {
@@ -67,7 +67,7 @@ const Profile = () => {
         onChange={handleFileInput}
       />
       <div onClick={() => setUploaded(!uploaded)}>
-        <img className="profile-img" src={imageValue} />
+        <img className="profile-img" src={imageValue} alt="profile-img" />
       </div>
       <p title={user}>Welcome {String(user).split(" ")[0]}</p>
     </div>
