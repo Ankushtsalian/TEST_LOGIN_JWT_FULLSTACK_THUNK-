@@ -1,0 +1,144 @@
+/* .main{
+    display: flex;
+    justify-content: center;align-items: center;
+} */
+
+.main-container-hide {
+    grid-template-columns: 1fr 7fr;
+    display: grid;
+
+    transition: all 0.85s;
+    position: relative;
+    top: 4.5rem;
+}
+
+.main-container-show {
+    transition: all 0.85s;
+
+    display: grid;
+    grid-template-columns: 1fr 7fr;
+    position: relative;
+    top: 4.5rem;
+
+
+}
+
+
+.main {
+    margin: 0 !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.85s;
+
+
+}
+
+pre {
+
+
+    margin: 0 !important;
+
+}
+
+
+
+
+
+.file-form-container .login-form button {
+    width: 100px;
+}
+
+.file-form-container .login-form .textbox label {
+    left: 0;
+}
+
+.file-form-container .login-form .textbox {
+    width: 300px !important;
+}
+
+.file-form-container .login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20PX 70px;
+    width: 400px;
+    height: 400px;
+    /* border: 1px solid red; */
+    /* background-image: url("../Assets/background.svg");
+     */
+     --tw-bg-opacity: 1;
+    background-color: rgb(30 41 59/var(--tw-bg-opacity));
+    box-shadow: 0 0 5px 2px #fff;
+
+    border-radius: 20px;
+
+}
+
+.file-form-container {
+    margin: 0 auto;
+    max-width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.file-form-container .login-form .textbox :is(input:focus, input:valid)~label {
+    translate: 0px -40px;
+    scale: 0.875;
+}
+
+
+.product-img:hover {      width: 350px;
+    height: 300px;}
+.product-img {
+ 
+    width: 250px;
+    height: 200px;
+    margin: 20px 20px 30px;
+    transition: all 0.85s;
+    object-fit: fill;
+
+}
+
+.product-img-container {
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: space-evenly;
+
+    align-items: center;
+    flex-wrap: wrap;
+    transition: all 0.85s;
+
+}
+
+.product-container button {
+    background-image: url("../Assets/background.svg");
+    width: 65%;
+    color: black;
+}
+
+.product-container:hover {
+    box-shadow: 0 0 5px 2px #fff;
+    /* min-width: 30%;
+    min-height: 15%; */
+    
+    background-image: url("../Assets/background.svg");
+
+
+}
+.product-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: all 0.35s;
+min-width: 15%;
+min-height: 25%;
+    align-items: center;
+    border: 1px solid black;
+    margin: 15px 30px 35px;
+    padding: 0 10px 20px;
+}

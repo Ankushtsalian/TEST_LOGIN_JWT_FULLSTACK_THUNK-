@@ -1,0 +1,82 @@
+
+.sidebarShow {
+  left: 0;
+
+  /* width: 300px !important; */
+  /* visibility: hidden; */
+     transition: all 0.85s;
+}
+
+.sidebarClose {
+  left: -100vh;
+  width: 0;
+       transition: all 0.85s;
+  height: 0;
+}
+.svg{
+ display: flex;
+
+
+
+}
+.submenu-button{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.sidebar {
+  position: relative;
+  /* top: 4.5rem; */
+  transition: all 0.85s;
+  /* background-image: url("../Assets/background.svg"); */
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: "Euclid Circular A";
+  animation: rotate 1.5s infinite alternate linear;
+  color: #3a334e;
+
+}
+   li{
+    margin: 10px;
+    font-size: 20px;
+    list-style: none;
+    padding:5px 0 15px;
+    color: #fff;
+   }
+   li, li button{
+    margin: 10px;
+    font-size: 20px;
+    list-style: none;
+  transition: all 0.85s;
+  color: #fff;
+   }
+  
+
+    .subMenu{    transition: all 0.85s;}
+
+   .subMenuShow{
+    opacity: 1;
+    transition: all 0.85s;
+    height: 100%;
+ 
+ 
+
+   }
+.subMenuClose{
+  opacity: 0;
+  height: 0;
+  transition: all 0.85s;
+
+
+}
+.sidebar-container{
+  border: 1px solid black;
+}
+
+ 
+ul{
+ margin: 0;
+ /* border: 1px solid black; */
+ transition: all 0.85s;
+
+}
