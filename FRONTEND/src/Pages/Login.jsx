@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { Link, useNavigate } from "react-router-dom";
-import Password from "./Password";
+import Password from "../components/Password";
 import axios from "axios";
 
 const Login = ({ handleInput, formInput, setFormInput }) => {

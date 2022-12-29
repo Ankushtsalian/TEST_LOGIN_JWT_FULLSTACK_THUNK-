@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Link } from "react-router-dom";
-import Password from "./Password";
+import Password from "../components/Password";
 
 const Register = ({ formInput, handleInput }) => {
   const { registerUsername, registerPassword, registerResetPassword } =

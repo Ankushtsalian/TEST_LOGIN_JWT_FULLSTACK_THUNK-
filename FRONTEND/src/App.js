@@ -1,8 +1,8 @@
 import "./App.css";
 import "../src/styles/login_register.css";
-import Register from "./components/Register";
-import Login from "./components/Login";
-import Dashboard from "./components/Dashboard";
+import Register from "./Pages/Register";
+import Login from "./Pages/Login";
+import Dashboard from "./Pages/Dashboard";
 import {
   BrowserRouter as Router,
   Routes,
@@ -10,7 +10,7 @@ import {
   useNavigate,
 } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Protected from "./components/Protected";
+import Protected from "./Pages/Protected";
 import Navbar from "./components/Navbar";
 
 function App() {

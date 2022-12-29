@@ -1,4 +1,4 @@
-import Logout from "./Logout";
+import Logout from "../Pages/Logout";
 import "../styles/navbar.css";
 import Hamburger from "./Hamburger";
 import chevron from "../Assets/chevron.svg";

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Sidebar from "./Sidebar";
+import Sidebar from "../components/Sidebar";
 import menuItems from "../Assets/menuItems";
 import "../styles/dashboard.css";
-import FileInput from "./FileInput";
-import Loader from "./Loader";
+import FileInput from "../components/FileInput";
+import Loader from "../components/Loader";
 
 const Dashboard = ({ isClosed }) => {
   return (
