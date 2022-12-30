@@ -25,7 +25,7 @@ const Product = ({ productList, handleDelete }) => {
               className="control "
               onClick={(e) => handleDelete(e, _id, public_id)}
             >
-              Delete
+              DELETE
             </button>
           </div>
         );

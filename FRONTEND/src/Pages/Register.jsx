@@ -71,7 +71,7 @@ const Register = ({ formInput, handleInput }) => {
               }
               onClick={handleRegister}
             >
-              Register
+              REGISTER
             </button>
           </form>
         </div>
