@@ -1,26 +1,57 @@
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Password from "../components/Password";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  handleFormInput,
+  clearUserFormInput,
+  clearToken,
+  registerUser,
+} from "../Redux/User-store/User-Slice";
+import { removeTokenFromLocalStorage } from "../utils/Local-Storage";
+import { useEffect } from "react";
 
-const Register = ({ formInput, handleInput }) => {
-  const { registerUsername, registerPassword, registerResetPassword } =
-    formInput;
+const Register = () => {
+  const {
+    tokenLog,
+    registerUsername,
+    registerPassword,
+    registerResetPassword,
+  } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    removeTokenFromLocalStorage();
+    dispatch(clearToken());
+    return console.log("Register page entered");
+  }, []);
 
   const handleRegister = async () => {
-    try {
-      const response = await axios.post(
-        "http://localhost:5000/api/v1/register",
-        {
-          username: registerUsername,
-          password: registerPassword,
-        }
-      );
-      alert(
-        `You have successfully registered as : ${response.data.msg.username}, Please try to login`
-      );
-    } catch (error) {
-      alert(error.response.data.msg + " Please try to Sign in");
+    dispatch(
+      registerUser({
+        username: registerUsername,
+        password: registerPassword,
+        // registerResetPassword,
+      })
+    );
+    dispatch(clearUserFormInput());
+  };
+  useEffect(() => {
+    if (tokenLog) {
+      setTimeout(() => {
+        navigate("/protected");
+      }, 2000);
     }
+    return () => {
+      console.log("Register Token checked and navigate to protected");
+    }; // eslint-disable-next-line
+  }, [tokenLog]);
+  const handleInput = (event) => {
+    const { name, value } = event.target;
+
+    dispatch(handleFormInput({ name, value }));
   };
 
   return (

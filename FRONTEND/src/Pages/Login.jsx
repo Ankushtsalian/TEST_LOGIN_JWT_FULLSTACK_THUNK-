@@ -9,55 +9,32 @@ import {
   addTokenToLocalStorage,
   removeTokenFromLocalStorage,
 } from "../utils/Local-Storage";
-import { loginUser, clearToken } from "../Redux/User-store/User-Slice";
+import {
+  loginUser,
+  clearToken,
+  clearUserFormInput,
+  handleFormInput,
+} from "../Redux/User-store/User-Slice";
 
-const Login = ({ handleInput, formInput, setFormInput }) => {
-  const { loginUsername, loginPassword } = formInput;
-  // const [token, setToken] = useState({ tokenLog: "", tokenDecoded: {} });
-  const { tokenLog, isLoading, setToken } = useSelector((state) => state.user);
+const Login = () => {
+  const { tokenLog, loginUsername, loginPassword } = useSelector(
+    (state) => state.user
+  );
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
-  // const { tokenLog, tokenDecoded } = token;
   useEffect(() => {
     removeTokenFromLocalStorage();
     dispatch(clearToken());
-    return console.log("done login");
+    return console.log("Register page entered");
   }, []);
 
   const handleLogin = async () => {
     dispatch(loginUser({ loginUsername, loginPassword }));
-    // if (tokenLog) navigate("/protected"); // try {
-    //   const response = await customFetch.post(
-    //     "/login",
-    //     formInput,
-    //     authHeader()
-    //   );
-    //   setToken((responseToken) => ({
-    //     ...responseToken,
-    //     tokenLog: response.data.msg.token,
-    //     // tokenDecoded: response.data.msg.decoded,
-    //   }));
-    //   setFormInput((formValue) => ({
-    //     ...formValue,
-    //     loginUsername: "",
-    //     loginPassword: "",
-    //     registerUsername: "",
-    //     registerPassword: "",
-    //     registerResetPassword: "",
-    //   }));
-    //   // if (token) navigate("/protected");
-    //   setTimeout(() => {
-    //     // alert(
-    //     //   `Login Successfull with username : ${response.data.msg.username}`
-    //     // );
-    //     // toast.success("DONE");
-    //   }, 250);
-    // } catch (error) {
-    //   alert(error.response.data.msg);
-    // }
+    dispatch(clearUserFormInput());
   };
+
   useEffect(() => {
     if (tokenLog) {
       setTimeout(() => {
@@ -65,19 +42,15 @@ const Login = ({ handleInput, formInput, setFormInput }) => {
       }, 2000);
     }
     return () => {
-      console.log("LOGIN");
+      console.log("Token checked and navigate to protected");
     }; // eslint-disable-next-line
   }, [tokenLog]);
-  // useEffect(() => {
-  //   if (tokenLog) {
-  //     addTokenToLocalStorage(tokenLog);
-  //   }
 
-  //   return () => {
-  //     console.log("LOGIN");
-  //   }; // eslint-disable-next-line
-  // }, []);
+  const handleInput = (event) => {
+    const { name, value } = event.target;
 
+    dispatch(handleFormInput({ name, value }));
+  };
   return (
     <main className="container ">
       <div className="login-card">

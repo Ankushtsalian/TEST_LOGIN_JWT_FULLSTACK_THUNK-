@@ -9,7 +9,7 @@ const registerSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: [true, "must provide username"],
+    required: [true, "must provide passsword"],
   },
   token: {
     type: String,

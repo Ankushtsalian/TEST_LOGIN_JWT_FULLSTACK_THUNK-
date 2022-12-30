@@ -47,10 +47,7 @@ function App() {
     const { name, value } = e.target;
 
     dispatch(handleFormInput({ name, value }));
-
-    // setFormInput((formValue) => ({ ...formValue, [name]: value }));
   };
-  console.log(formInput);
   return (
     <>
       {/* <main> */}

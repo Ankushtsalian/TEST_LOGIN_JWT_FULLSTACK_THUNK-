@@ -4,15 +4,16 @@ const CustomAPIError = require("../errors/custom-error");
 /**---------------------------REGISTER-------------------------------------- */
 
 const register = async (req, res) => {
-  const { username } = req.body;
+  const { username, password } = req.body;
   const findUser = await registerSchema.find({ username });
   if (findUser.length !== 0) {
     throw new CustomAPIError("User Exist", 401);
   }
+
   const user = await registerSchema.create({ ...req.body });
   const token = user.createJWT();
-
-  res.status(200).json({ msg: { username: user.username, token } });
+  console.log({ user });
+  return res.status(200).json({ msg: { username: user.username, token } });
 };
 
 /**---------------------------REGISTER-------------------------------------- */
@@ -22,7 +23,6 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   const { loginUsername: username, loginPassword: password } = req.body;
   // const { authorization } = req.headers;
-  console.log(username, password);
   if (!username || !password)
     throw new CustomAPIError("Please provide email and password", 400);
 

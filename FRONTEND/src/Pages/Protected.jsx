@@ -7,7 +7,7 @@ const Protected = ({ children }) => {
   const token = localStorage.getItem("Token");
   useEffect(() => {
     if (!token) {
-      return navigate("/login");
+      return navigate("/");
     }
   }, [token]);
 
