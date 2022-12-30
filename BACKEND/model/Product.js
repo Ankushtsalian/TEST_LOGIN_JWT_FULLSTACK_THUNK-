@@ -1,3 +1,4 @@
+const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
 
 const ProductSchema = new mongoose.Schema(
@@ -31,5 +32,19 @@ const ProductSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+ProductSchema.methods.createJWT = function (token) {
+  let tokenValue = token.split(" ")[1];
+  const decoded = jwt.verify(tokenValue, process.env.JWT_SECRET);
+
+  if (decoded.userId === String(this.createdBy))
+    return { msg: { decoded, token } };
+  throw new CustomAPIError("Unathorized User", 404);
+};
+// ProductSchema.methods.validateToken = function (token) {
+//   console.log("token");
+//
+//   return token;
+// };
 
 module.exports = mongoose.model("Product", ProductSchema);

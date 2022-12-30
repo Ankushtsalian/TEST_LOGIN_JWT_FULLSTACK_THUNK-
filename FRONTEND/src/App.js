@@ -10,7 +10,6 @@ import Navbar from "./components/Navbar";
 
 function App() {
   /**-------------------------------------------------------------------- */
-  const [isClosed, setIsClosed] = useState(false);
 
   /**-------------------------------------------------------------------- */
 
