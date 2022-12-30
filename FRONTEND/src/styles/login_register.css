@@ -139,9 +139,9 @@
     scale: 0.875;
   }
   
-  input:focus ~ label {
+  /* input:focus ~ label { */
     /* color: #fff; */
-  }
+  /* } */
   
   input:focus {
     /* border-color: #fff; */
