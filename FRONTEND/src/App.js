@@ -12,23 +12,45 @@ import {
 import { useEffect, useState } from "react";
 import Protected from "./Pages/Protected";
 import Navbar from "./components/Navbar";
+import { useDispatch, useSelector } from "react-redux";
+import { handleFormInput } from "./Redux/User-store/User-Slice";
 function App() {
-  const [formInput, setFormInput] = useState({
-    loginUsername: "",
-    loginPassword: "",
-    registerUsername: "",
-    registerPassword: "",
-    registerResetPassword: "",
-  });
+  // const [formInput, setFormInput] = useState({
+  //   loginUsername: "",
+  //   loginPassword: "",
+  //   registerUsername: "",
+  //   registerPassword: "",
+  //   registerResetPassword: "",
+  // });
+  const {
+    loginUsername,
+    loginPassword,
+    registerUsername,
+    registerPassword,
+    registerResetPassword,
+  } = useSelector((state) => state.user);
 
+  const dispatch = useDispatch();
+
+  const formInput = {
+    loginUsername,
+    loginPassword,
+    registerUsername,
+    registerPassword,
+    registerResetPassword,
+  };
   /**-------------------------------------------------------------------- */
   const [isClosed, setIsClosed] = useState(false);
 
   /**-------------------------------------------------------------------- */
   const handleInput = (e) => {
     const { name, value } = e.target;
-    setFormInput((formValue) => ({ ...formValue, [name]: value }));
+
+    dispatch(handleFormInput({ name, value }));
+
+    // setFormInput((formValue) => ({ ...formValue, [name]: value }));
   };
+  console.log(formInput);
   return (
     <>
       {/* <main> */}
@@ -40,7 +62,7 @@ function App() {
               <Register
                 handleInput={handleInput}
                 formInput={formInput}
-                setFormInput={setFormInput}
+                // setFormInput={setFormInput}
               />
             }
           />
@@ -50,7 +72,7 @@ function App() {
               <Login
                 handleInput={handleInput}
                 formInput={formInput}
-                setFormInput={setFormInput}
+                // setFormInput={setFormInput}
               />
             }
           />

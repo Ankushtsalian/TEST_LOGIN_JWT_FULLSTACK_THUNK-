@@ -5,11 +5,15 @@ import {
   removeTokenFromLocalStorage,
 } from "../../utils/Local-Storage";
 import { loginUserThunk } from "./User-Thunk";
-// import { Link, useNavigate } from "react-router-dom";
 
 const initialState = {
   tokenLog: "",
   isLoading: false,
+  loginUsername: "",
+  loginPassword: "",
+  registerUsername: "",
+  registerPassword: "",
+  registerResetPassword: "",
 };
 
 export const loginUser = createAsyncThunk(
@@ -25,6 +29,9 @@ const userSlice = createSlice({
   reducers: {
     clearToken: (state) => {
       state.tokenLog = null;
+    },
+    handleFormInput: (state, { payload: { name, value } }) => {
+      state[name] = value;
     },
   },
   extraReducers: (builder) => {
@@ -47,5 +54,5 @@ const userSlice = createSlice({
   },
 });
 
-export const { clearToken } = userSlice.actions;
+export const { clearToken, handleFormInput } = userSlice.actions;
 export default userSlice.reducer;
