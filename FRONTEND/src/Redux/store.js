@@ -1,22 +1,9 @@
-import { legacy_createStore as createStore, applyMiddleware } from "redux";
-import reduxThunk from "redux-thunk";
-import rootReducer from "./root-reducer";
+import { configureStore } from "@reduxjs/toolkit";
 
-// const middlewares = [reduxThunk];
+import UserSlice from "./User-store/User-Slice";
 
-// const store = createStore(rootReducer, applyMiddleware(...middlewares));
-
-const middlewares = [
-  process.env.NODE_ENV !== "production" && reduxThunk,
-].filter(Boolean);
-
-const composeEnhancer =
-  process.env.NODE_ENV !== "production" &&
-  window &&
-  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
-
-const composedEnhancers = composeEnhancer(applyMiddleware(...middlewares));
-// export const store = createStore(rootReducer, undefined, composedEnhancers);
-
-export const store = createStore(rootReducer, undefined, composedEnhancers);
-export default store;
+export const store = configureStore({
+  reducer: {
+    user: UserSlice,
+  },
+});

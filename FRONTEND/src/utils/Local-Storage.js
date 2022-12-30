@@ -3,14 +3,13 @@ export const addTokenToLocalStorage = (Token) => {
 };
 
 export const removeTokenFromLocalStorage = () => {
-  localStorage.removeItem("Token");
+  localStorage?.removeItem("Token");
+  localStorage?.removeItem("profile");
 };
-export const removeProfileFromLocalStorage = () => {
-  localStorage.removeItem("profile");
-};
+// export const removeProfileFromLocalStorage = () => {
 
 export const getTokenFromLocalStorage = () => {
-  const Token = localStorage.getItem("user");
+  const Token = localStorage?.getItem("Token") || "";
   //   const user = result ? JSON.parse(result) : null;
   return Token;
 };
