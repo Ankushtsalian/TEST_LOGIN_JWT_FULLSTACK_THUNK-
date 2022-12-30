@@ -3,21 +3,25 @@ import { ToastContainer, toast } from "react-toastify";
 
 import { Link, useNavigate } from "react-router-dom";
 import Password from "../components/Password";
-import axios from "axios";
 import customFetch from "../utils/Axios";
+import authHeader from "../utils/Auth-Header";
+import {
+  addTokenToLocalStorage,
+  removeProfileFromLocalStorage,
+  removeTokenFromLocalStorage,
+} from "../utils/Local-Storage";
 
 const Login = ({ handleInput, formInput, setFormInput }) => {
   const { loginUsername, loginPassword } = formInput;
-
   const [token, setToken] = useState({ tokenLog: "", tokenDecoded: {} });
 
   const navigate = useNavigate();
 
   const { tokenLog, tokenDecoded } = token;
-  // console.log(tokenDecoded);
   useEffect(() => {
-    localStorage.removeItem("Token");
-    localStorage.removeItem("profile");
+    removeTokenFromLocalStorage("Token");
+    removeProfileFromLocalStorage("profile");
+
     return console.log("done login");
   }, []);
 
@@ -25,15 +29,8 @@ const Login = ({ handleInput, formInput, setFormInput }) => {
     try {
       const response = await customFetch.post(
         "/login",
-        {
-          username: loginUsername,
-          password: loginPassword,
-        },
-        {
-          headers: {
-            Authorization: "Bearer ",
-          },
-        }
+        formInput,
+        authHeader()
       );
 
       setToken((responseToken) => ({
@@ -65,7 +62,8 @@ const Login = ({ handleInput, formInput, setFormInput }) => {
 
   useEffect(() => {
     if (tokenLog) {
-      localStorage.setItem("Token", tokenLog);
+      addTokenToLocalStorage(tokenLog);
+      // localStorage.setItem("Token", tokenLog);
       navigate("/protected");
     }
 

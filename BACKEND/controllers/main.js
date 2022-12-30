@@ -20,9 +20,9 @@ const register = async (req, res) => {
 /**---------------------------LOGIN-------------------------------------- */
 
 const login = async (req, res) => {
-  const { username, password } = req.body;
+  const { loginUsername: username, loginPassword: password } = req.body;
   // const { authorization } = req.headers;
-
+  console.log(username, password);
   if (!username || !password)
     throw new CustomAPIError("Please provide email and password", 400);
 
