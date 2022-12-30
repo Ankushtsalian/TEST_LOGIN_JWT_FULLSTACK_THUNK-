@@ -129,7 +129,7 @@
   .textbox input {
     padding: 0 24px 0 36px;
     border: 0;
-    /* border-bottom: 2px solid #2b3442; */
+    border-bottom: 2px solid #fff;
     color: rgb(255 255 255 / 96%);
     height: 72px;
   }
@@ -168,6 +168,7 @@
     color: rgb(255 255 255 / 40%);
     pointer-events: none;
     transition: 0.4s;
+  font-weight: bold;
   }
   .form1 {
     margin: 100px;
