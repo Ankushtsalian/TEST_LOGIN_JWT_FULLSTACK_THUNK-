@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 
-const Password = ({ placeholder, handleInput, name }) => {
+const Password = ({ placeholder, handleInput, name, value }) => {
   const [toggleButton, setToggleButton] = useState(false);
   const togglePassword = () => {
     setToggleButton(!toggleButton);
   };
+
   return (
     <div className="password">
       <div className="textbox">
@@ -13,7 +14,7 @@ const Password = ({ placeholder, handleInput, name }) => {
           required
           name={name}
           type={toggleButton ? "text" : "password"}
-          // placeholder={placeholder}
+          value={value}
           onChange={handleInput}
         />
         <label>Password</label>

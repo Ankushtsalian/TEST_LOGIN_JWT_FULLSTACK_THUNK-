@@ -66,22 +66,22 @@ const Register = () => {
                 type="text"
                 required
                 name="registerUsername"
+                value={registerUsername}
                 onChange={handleInput}
               />
               <label>Username</label>
-              <span className="material-symbols-outlined">
-                {" "}
-                account_circle{" "}
-              </span>
+              <span className="material-symbols-outlined">account_circle</span>
             </div>
             <Password
               placeholder="Password"
               name="registerPassword"
+              value={registerPassword}
               handleInput={handleInput}
             />
             <Password
               placeholder="Re-Enter-password"
               name="registerResetPassword"
+              value={registerResetPassword}
               handleInput={handleInput}
             />
 

@@ -31,7 +31,7 @@ function App() {
                 <Dashboard isClosed={isClosed} />
               </Protected>
             }
-          ></Route>
+          />
 
           <Route
             path="*"

@@ -1,32 +1,32 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { clearToken } from "../Redux/User-store/User-Slice";
+import { removeTokenFromLocalStorage } from "../utils/Local-Storage";
 
 const Logout = () => {
-  const token = localStorage.getItem("Token");
-  const [logToken, setLogToken] = useState(token);
-
+  const { tokenLog } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const handleLogout = () => {
-    setLogToken(localStorage.removeItem("Token"));
-    setLogToken(localStorage.removeItem("profile"));
+    dispatch(clearToken());
   };
 
   useEffect(() => {
-    if (!logToken) {
-      // localStorage.removeItem("Token");
+    if (!tokenLog) {
       navigate("/login");
     }
     return () => {
       console.log("LOGOUT");
     };
     // eslint-disable-next-line
-  }, [logToken]);
+  }, [tokenLog]);
 
   return (
     <>
       <button className="log-out" onClick={handleLogout}>
-        {" "}
         Sign out
       </button>
     </>

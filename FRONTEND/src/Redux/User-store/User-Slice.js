@@ -7,7 +7,7 @@ import {
 import { loginUserThunk, registerUserThunk } from "./User-Thunk";
 
 const initialState = {
-  tokenLog: getTokenFromLocalStorage,
+  tokenLog: getTokenFromLocalStorage(),
   isLoading: false,
   loginUsername: "",
   loginPassword: "",

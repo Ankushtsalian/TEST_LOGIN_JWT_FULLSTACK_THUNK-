@@ -5,9 +5,6 @@ import chevron from "../Assets/chevron.svg";
 import Profile from "./Profile";
 
 const Navbar = ({ isClosed, setIsClosed }) => {
-  // const [isClosed, setIsClosed] = useState(false);
-  // const toggleMenu = () => document.body.classList.toggle("open");
-
   return (
     <nav className="navbar">
       <Hamburger isClosed={isClosed} setIsClosed={setIsClosed} />
