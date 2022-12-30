@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 
 import { Link, useNavigate } from "react-router-dom";
 import Password from "../components/Password";
@@ -54,6 +55,7 @@ const Login = ({ handleInput, formInput, setFormInput }) => {
         alert(
           `Login Successfull with username : ${response.data.msg.username}`
         );
+        toast.success("DONE");
       }, 250);
     } catch (error) {
       alert(error.response.data.msg);

@@ -12,7 +12,6 @@ import {
 import { useEffect, useState } from "react";
 import Protected from "./Pages/Protected";
 import Navbar from "./components/Navbar";
-
 function App() {
   const [formInput, setFormInput] = useState({
     loginUsername: "",
