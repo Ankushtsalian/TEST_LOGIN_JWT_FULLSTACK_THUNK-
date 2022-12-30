@@ -1,15 +1,10 @@
 import React from "react";
-import { useState } from "react";
 import menuItems from "../Assets/menuItems";
 import "../styles/sidebar.css";
 import NavMenu from "./NavMenu";
-const Sidebar = ({ isClosed }) => {
+const Sidebar = () => {
   return (
-    <div
-      className="sidebar-container"
-      // className={`${isClosed ? "sidebar sidebarShow" : "sidebar  sidebarClose"}
-      // `}
-    >
+    <div className="sidebar-container">
       <ul>
         {menuItems.map((item, i) => (
           <li key={i}>

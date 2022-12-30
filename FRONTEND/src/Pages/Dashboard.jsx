@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import Sidebar from "../components/Sidebar";
-import menuItems from "../Assets/menuItems";
 import "../styles/dashboard.css";
 import FileInput from "../components/FileInput";
-import Loader from "../components/Loader";
+import { useSelector } from "react-redux";
 
-const Dashboard = ({ isClosed }) => {
+const Dashboard = () => {
+  const { isClosed } = useSelector((state) => state.product);
   return (
     <div
       className={`${!isClosed ? "main-container-hide" : "main-container-show"}
@@ -17,11 +17,9 @@ const Dashboard = ({ isClosed }) => {
         className={`${isClosed ? "sidebar sidebarShow" : "sidebarClose"}
       `}
       >
-        <Sidebar isClosed={isClosed} />
+        <Sidebar />
       </aside>
       <div className="main">
-        {/* <Loader /> */}
-        {/* <pre>{JSON.stringify(menuItems, null, 2)}</pre> */}
         <FileInput />
       </div>
     </div>

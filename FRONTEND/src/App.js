@@ -26,9 +26,9 @@ function App() {
             path="/protected"
             element={
               <Protected>
-                <Navbar isClosed={isClosed} setIsClosed={setIsClosed} />
+                <Navbar />
 
-                <Dashboard isClosed={isClosed} />
+                <Dashboard />
               </Protected>
             }
           />

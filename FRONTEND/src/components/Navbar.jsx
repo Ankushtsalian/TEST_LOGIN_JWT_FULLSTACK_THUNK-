@@ -3,11 +3,14 @@ import "../styles/navbar.css";
 import Hamburger from "./Hamburger";
 import chevron from "../Assets/chevron.svg";
 import Profile from "./Profile";
+import { useSelector } from "react-redux";
 
-const Navbar = ({ isClosed, setIsClosed }) => {
+const Navbar = () => {
+  const { isClosed } = useSelector((state) => state.product);
+
   return (
     <nav className="navbar">
-      <Hamburger isClosed={isClosed} setIsClosed={setIsClosed} />
+      <Hamburger isClosed={isClosed} />
       <button className="button">Home</button>
       <div className="dropdowns">
         <div className="dropdown">
