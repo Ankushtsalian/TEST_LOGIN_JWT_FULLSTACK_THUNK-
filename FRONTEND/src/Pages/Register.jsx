@@ -1,4 +1,3 @@
-import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import Password from "../components/Password";
 import { useDispatch, useSelector } from "react-redux";
@@ -33,7 +32,6 @@ const Register = () => {
       registerUser({
         username: registerUsername,
         password: registerPassword,
-        // registerResetPassword,
       })
     );
     dispatch(clearUserFormInput());
@@ -48,6 +46,7 @@ const Register = () => {
       console.log("Register Token checked and navigate to protected");
     }; // eslint-disable-next-line
   }, [tokenLog]);
+
   const handleInput = (event) => {
     const { name, value } = event.target;
 
@@ -61,14 +60,6 @@ const Register = () => {
           <h2>Register</h2>
           <h3>Enter your credentials</h3>
           <form className="register-form">
-            {/* <input
-              spellCheck="false"
-              className="control"
-              name="registerUsername"
-              type="text"
-              placeholder="Username"
-              onChange={handleInput}
-            /> */}
             <div className="textbox">
               <input
                 className="input"
