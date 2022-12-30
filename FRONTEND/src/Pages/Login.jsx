@@ -4,6 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
 import Password from "../components/Password";
 import axios from "axios";
+import customFetch from "../utils/Axios";
 
 const Login = ({ handleInput, formInput, setFormInput }) => {
   const { loginUsername, loginPassword } = formInput;
@@ -22,8 +23,8 @@ const Login = ({ handleInput, formInput, setFormInput }) => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/v1/login",
+      const response = await customFetch.post(
+        "/login",
         {
           username: loginUsername,
           password: loginPassword,
