@@ -68,7 +68,6 @@ const getAllProducts = async (req, res) => {
   const FileterdimagesId = combinedProductId.filter(
     (image) => !productImageId.includes(image)
   );
-
   [...FileterdimagesId, ...profileId].forEach(async (publicId) => {
     await cloudinary?.uploader.destroy(publicId);
     await Image?.deleteOne({ public_id: publicId });

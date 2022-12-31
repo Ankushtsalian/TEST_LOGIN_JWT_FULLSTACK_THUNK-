@@ -1,14 +1,22 @@
 import authHeader from "../../utils/Auth-Header";
 import customFetch from "../../utils/Axios";
+import { getTokenFromLocalStorage } from "../../utils/Local-Storage";
 // import customFetch, { checkForUnauthorizedResponse } from "../../utils/axios";
-
-export const loginUserThunk = async (url, formInput, thunkAPI) => {
+const token = getTokenFromLocalStorage();
+export const profileImageThunk = async (url, formData, thunkAPI) => {
   try {
-    const response = await customFetch.post("/login", formInput, authHeader());
-    setTimeout(() => {
-      alert(`Login Successfull with username : ${response.data.msg.username}`);
-    }, 250);
-    return response.data.msg.token;
+    const {
+      data: {
+        image: { src },
+      },
+    } = await customFetch.post(
+      "/products/profile",
+      formData,
+      authHeader(token, true)
+    );
+
+    alert("Profile uploaded");
+    return src;
   } catch (error) {
     const message =
       (error.response && error.response.data && error.response.data.msg) ||
@@ -18,20 +26,14 @@ export const loginUserThunk = async (url, formInput, thunkAPI) => {
   }
 };
 
-export const registerUserThunk = async (url, formInput, thunkAPI) => {
+export const profileNameThunk = async (url, thunkAPI) => {
   try {
-    const response = await customFetch.post(
-      "/register",
-      formInput,
-      authHeader()
+    const products = await customFetch.get(
+      "/products",
+      authHeader(token, true)
     );
 
-    setTimeout(() => {
-      alert(
-        `registration Successfull with username : ${response.data.msg.username}`
-      );
-    }, 250);
-    return response.data.msg.token;
+    return products.data;
   } catch (error) {
     const message =
       (error.response && error.response.data && error.response.data.msg) ||

@@ -1,28 +1,17 @@
-import axios from "axios";
 import React, { useEffect } from "react";
-import { useState } from "react";
-const url = "http://localhost:5000/api/v1/products";
-let user;
+import { useDispatch, useSelector } from "react-redux";
+import {
+  handleProfileInputState,
+  profileImage,
+  profileName,
+} from "../Redux/Profile-Store/Profile-Slice";
 
 const Profile = () => {
-  // const [uploaded, setUploaded] = useState(false);
-  let [imageValue, setimageValue] = useState(localStorage.getItem("profile"));
-  const { uploaded } = useSelector((state) => state.profile);
+  const { uploaded, imageValue, user } = useSelector((state) => state.profile);
   const dispatch = useDispatch();
 
   const fetchProfile = async () => {
-    try {
-      const products = await axios.get(url, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${localStorage.getItem("Token")}`,
-        },
-      });
-      user = products.data.user;
-      setimageValue(products.data.src);
-    } catch (error) {
-      console.log(error);
-    }
+    dispatch(profileName());
   };
 
   useEffect(() => {
@@ -31,34 +20,13 @@ const Profile = () => {
       console.log("done");
     };
   }, []);
+
   const handleFileInput = async (event) => {
     const imageFile = event.target.files[0];
-    console.log(event.target.files);
     let formData = new FormData();
     formData = { ...formData, ["image"]: imageFile };
-    try {
-      // setIsLoading(true);
-      console.log(localStorage.getItem("Token"));
-      const {
-        data: {
-          image: { src },
-          // public_id,
-        },
-      } = await axios.post(`${url}/profile`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${localStorage.getItem("Token")}`,
-        },
-      });
-      setimageValue(src);
-      setUploaded(!uploaded);
-      localStorage.setItem("profile", src);
-      alert("Profile uploaded");
-    } catch (error) {
-      imageValue = null;
-      console.log(error);
-    }
-    // setIsLoading(false);
+
+    dispatch(profileImage(formData));
   };
 
   return (
@@ -68,7 +36,7 @@ const Profile = () => {
         className={`${!uploaded ? "file" : "show"}`}
         onChange={handleFileInput}
       />
-      <div onClick={() => setUploaded(!uploaded)}>
+      <div onClick={() => dispatch(handleProfileInputState())}>
         <img className="profile-img" src={imageValue} alt="profile-img" />
       </div>
       <p title={user}>Welcome {String(user).split(" ")[0]}</p>
