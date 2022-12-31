@@ -1,13 +1,15 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import { useState } from "react";
-// import img from "../Assets/profile.png";
 const url = "http://localhost:5000/api/v1/products";
 let user;
 
 const Profile = () => {
-  const [uploaded, setUploaded] = useState(false);
+  // const [uploaded, setUploaded] = useState(false);
   let [imageValue, setimageValue] = useState(localStorage.getItem("profile"));
+  const { uploaded } = useSelector((state) => state.profile);
+  const dispatch = useDispatch();
+
   const fetchProfile = async () => {
     try {
       const products = await axios.get(url, {

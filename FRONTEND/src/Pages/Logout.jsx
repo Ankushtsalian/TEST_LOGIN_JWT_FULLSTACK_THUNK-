@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { clearToken } from "../Redux/User-store/User-Slice";
-import { removeTokenFromLocalStorage } from "../utils/Local-Storage";
 
 const Logout = () => {
   const { tokenLog } = useSelector((state) => state.user);
@@ -25,11 +24,9 @@ const Logout = () => {
   }, [tokenLog]);
 
   return (
-    <>
-      <button className="log-out" onClick={handleLogout}>
-        Sign out
-      </button>
-    </>
+    <button className="log-out" onClick={handleLogout}>
+      Sign out
+    </button>
   );
 };
 
