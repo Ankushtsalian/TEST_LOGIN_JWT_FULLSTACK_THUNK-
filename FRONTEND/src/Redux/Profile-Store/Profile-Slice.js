@@ -44,7 +44,12 @@ const profileSlice = createSlice({
     handleProfileInputState: (state) => {
       state.uploaded = !state.uploaded;
     },
-    ClearAllState: (state) => (state = initialState),
+    ClearAllState: (state) => {
+      state.tokenLog = "";
+      state.uploaded = false;
+      state.imageValue = "";
+      state.user = "";
+    },
     // handleFormInput: (state, { payload: { name, value } }) => {
     //   state[name] = value;
     // },
@@ -55,10 +60,10 @@ const profileSlice = createSlice({
     });
 
     builder.addCase(profileImage.fulfilled, (state, { payload }) => {
+      state.tokenLog = getTokenFromLocalStorage();
       state.isLoading = false;
       state.imageValue = payload;
       state.uploaded = !state.uploaded;
-      addProfileToLocalStorage(payload);
     });
 
     builder.addCase(profileImage.rejected, (state, { payload }) => {
@@ -73,10 +78,11 @@ const profileSlice = createSlice({
     });
 
     builder.addCase(profileName.fulfilled, (state, { payload }) => {
+      state.tokenLog = getTokenFromLocalStorage();
       state.isLoading = false;
       state.imageValue = payload.src;
       state.user = payload.user;
-      addProfileToLocalStorage(payload.src);
+      // addProfileToLocalStorage(payload.src);
     });
 
     builder.addCase(profileName.rejected, (state, { payload }) => {

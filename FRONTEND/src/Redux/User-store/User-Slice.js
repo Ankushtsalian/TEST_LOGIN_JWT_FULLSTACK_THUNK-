@@ -43,7 +43,7 @@ const userSlice = createSlice({
       state.registerResetPassword = "";
     },
     clearToken: (state) => {
-      state.tokenLog = null;
+      state.tokenLog = "";
     },
 
     handleFormInput: (state, { payload: { name, value } }) => {

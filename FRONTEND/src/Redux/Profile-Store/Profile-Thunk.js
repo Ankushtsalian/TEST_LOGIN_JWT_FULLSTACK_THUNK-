@@ -1,6 +1,9 @@
 import authHeader from "../../utils/Auth-Header";
 import customFetch from "../../utils/Axios";
-import { getTokenFromLocalStorage } from "../../utils/Local-Storage";
+import {
+  addProfileToLocalStorage,
+  getTokenFromLocalStorage,
+} from "../../utils/Local-Storage";
 // import customFetch, { checkForUnauthorizedResponse } from "../../utils/axios";
 const token = getTokenFromLocalStorage();
 export const profileImageThunk = async (url, formData, thunkAPI) => {
@@ -14,6 +17,7 @@ export const profileImageThunk = async (url, formData, thunkAPI) => {
       formData,
       authHeader(token, true)
     );
+    addProfileToLocalStorage(src);
 
     alert("Profile uploaded");
     return src;

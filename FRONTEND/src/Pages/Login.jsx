@@ -10,6 +10,7 @@ import {
   clearUserFormInput,
   handleFormInput,
 } from "../Redux/User-store/User-Slice";
+import { ClearAllState } from "../Redux/Profile-Store/Profile-Slice";
 
 const Login = () => {
   const { tokenLog, loginUsername, loginPassword } = useSelector(
@@ -20,8 +21,10 @@ const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log("login init");
     removeTokenFromLocalStorage();
     dispatch(clearToken());
+    dispatch(ClearAllState());
     return console.log("Register page entered");
   }, []);
 

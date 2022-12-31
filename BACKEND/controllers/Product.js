@@ -35,7 +35,7 @@ const getAllProducts = async (req, res) => {
   const productValidation = await Product.findOne({
     createdByName: req.user.username,
   });
-  const token = productValidation.createJWT(req.headers.authorization);
+  productValidation.createJWT(req.headers.authorization);
 
   const products = await Product.find({
     createdBy: String(req.user.userId),

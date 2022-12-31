@@ -17,7 +17,7 @@ const UnAuthorize = () => {
 
   setTimeout(() => {
     dispatch(ClearAllState());
-    return navigate("/login");
+    navigate("/login");
   }, 2000);
 
   return <h1>---------------NOT AUTHORIZED---------------</h1>;

@@ -24,6 +24,8 @@ const Register = () => {
   useEffect(() => {
     removeTokenFromLocalStorage();
     dispatch(clearToken());
+    dispatch(ClearAllState());
+
     return console.log("Register page entered");
   }, []);
 
