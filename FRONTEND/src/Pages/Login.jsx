@@ -56,6 +56,7 @@ const Login = () => {
           <form className="login-form">
             <div className="textbox">
               <input
+                // autoComplete="off"
                 className="input"
                 type="text"
                 value={loginUsername}

@@ -3,8 +3,6 @@ import React, { useEffect, useState } from "react";
 import Product from "./Product";
 import FormRow from "./FormRow";
 import Loader from "./Loader";
-import { getTokenFromLocalStorage } from "../utils/Local-Storage";
-// const imgUrl = "http://localhost:5000";
 const url = "http://localhost:5000/api/v1/products";
 const FileInput = () => {
   const [fileFormData, setFileFormData] = useState({
@@ -16,27 +14,19 @@ const FileInput = () => {
     },
   });
   const [productList, setProducts] = useState([]);
-  // const {
-  //   name,
-  //   price,
-  //   imageDetail: { image, public_id },
-  // } = fileFormData;
+
   let imageValue;
   let src;
   const [isLoading, setIsLoading] = useState(false);
 
   const fetchProducts = async () => {
     try {
-      const products = await axios.get(
-        url,
-        // { token: getTokenFromLocalStorage() },
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${localStorage.getItem("Token")}`,
-          },
-        }
-      );
+      const products = await axios.get(url, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${localStorage.getItem("Token")}`,
+        },
+      });
       src = products.data.src;
       setProducts(products.data.products);
     } catch (error) {

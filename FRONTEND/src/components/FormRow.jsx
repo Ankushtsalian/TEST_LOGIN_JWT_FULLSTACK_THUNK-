@@ -4,6 +4,7 @@ const FormRow = ({ name, label, onChange, type }) => {
   return (
     <div className="textbox">
       <input
+        autoComplete="off"
         className="input"
         type={type}
         required
