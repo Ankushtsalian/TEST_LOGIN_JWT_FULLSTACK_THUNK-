@@ -44,6 +44,7 @@ const profileSlice = createSlice({
     handleProfileInputState: (state) => {
       state.uploaded = !state.uploaded;
     },
+    ClearAllState: (state) => (state = initialState),
     // handleFormInput: (state, { payload: { name, value } }) => {
     //   state[name] = value;
     // },
@@ -87,5 +88,5 @@ const profileSlice = createSlice({
   },
 });
 
-export const { handleProfileInputState } = profileSlice.actions;
+export const { handleProfileInputState, ClearAllState } = profileSlice.actions;
 export default profileSlice.reducer;
