@@ -1,17 +1,17 @@
 import { Link, useNavigate } from "react-router-dom";
 import Password from "../components/Password";
 import { useDispatch, useSelector } from "react-redux";
+
+import { removeTokenFromLocalStorage } from "../utils/Local-Storage";
+import { useEffect } from "react";
 import {
   handleFormInput,
   clearUserFormInput,
   clearToken,
   registerUser,
-} from "../Redux/User-store/User-Slice";
-import { removeTokenFromLocalStorage } from "../utils/Local-Storage";
-import { useEffect } from "react";
-import { ClearAllState } from "../Redux/Profile-Store/Profile-Slice";
-import { ClearAllProductState } from "../Redux/Product-store/Product-Slice";
-
+  ClearAllState,
+  ClearAllProductState,
+} from "../Redux/index";
 const Register = () => {
   const {
     tokenLog,

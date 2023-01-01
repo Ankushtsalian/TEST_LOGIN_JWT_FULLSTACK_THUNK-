@@ -4,14 +4,15 @@ import { Link, useNavigate } from "react-router-dom";
 import Password from "../components/Password";
 
 import { removeTokenFromLocalStorage } from "../utils/Local-Storage";
+
 import {
+  ClearAllState,
+  ClearAllProductState,
   loginUser,
-  clearToken,
-  clearUserFormInput,
   handleFormInput,
-} from "../Redux/User-store/User-Slice";
-import { ClearAllState } from "../Redux/Profile-Store/Profile-Slice";
-import { ClearAllProductState } from "../Redux/Product-store/Product-Slice";
+  clearUserFormInput,
+  clearToken,
+} from "../Redux/index";
 
 const Login = () => {
   const { tokenLog, loginUsername, loginPassword } = useSelector(
