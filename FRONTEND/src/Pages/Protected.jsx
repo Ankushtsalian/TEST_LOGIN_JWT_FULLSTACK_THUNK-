@@ -6,6 +6,7 @@ import {
   ClearAllProfileState,
   clearUserToken,
 } from "../Redux";
+import { getTokenFromLocalStorage } from "../utils/Local-Storage";
 
 import UnAuthorize from "./UnAuthorize";
 
@@ -19,9 +20,8 @@ const Protected = ({ children }) => {
   );
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  localStorage.setItem("Token", JSON.stringify(Token));
 
-  const token = getTokenFromLocalStorage();
+  // const token = getTokenFromLocalStorage();
   // useEffect(() => {
   // if (!token) {
   //   navigate("/login");
