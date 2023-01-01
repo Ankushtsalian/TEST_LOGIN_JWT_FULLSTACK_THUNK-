@@ -8,6 +8,7 @@ import {
 // import customFetch, { checkForUnauthorizedResponse } from "../../utils/axios";
 const token = getTokenFromLocalStorage();
 export const profileImageThunk = async (url, formData, thunkAPI) => {
+  console.log("thunkAPI", thunkAPI);
   try {
     const {
       data: {

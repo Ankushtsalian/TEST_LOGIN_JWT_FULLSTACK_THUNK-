@@ -15,8 +15,12 @@ import errorMessage from "../utils/Error-Message";
 const FileInput = () => {
   const { isLoading, name, price, image, public_id, errorMessage } =
     useSelector((state) => state.product);
+  const { errorMessage: msg, errorStatusCode } = useSelector(
+    (state) => state.profile
+  );
   const dispatch = useDispatch();
-  console.log(errorMessage);
+  console.log("prod:", errorMessage);
+  console.log("profile", msg, errorStatusCode);
   const fileFormData = {
     name,
     price,

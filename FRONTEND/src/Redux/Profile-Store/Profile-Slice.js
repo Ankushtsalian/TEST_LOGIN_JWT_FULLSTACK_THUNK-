@@ -17,14 +17,14 @@ const initialState = {
 
 export const profileImage = createAsyncThunk(
   "profile/profileImage",
-  async (formData, thunkAPI) => {
+  (formData, thunkAPI) => {
     return profileImageThunk("/profile", formData, thunkAPI);
   }
 );
 
 export const profileName = createAsyncThunk(
   "profile/profileName",
-  async (thunkAPI) => {
+  (_, thunkAPI) => {
     return profileNameThunk("/products", thunkAPI);
   }
 );
@@ -56,13 +56,16 @@ const profileSlice = createSlice({
       state.uploaded = !state.uploaded;
     });
 
-    builder.addCase(profileImage.rejected, (state, { payload }) => {
-      state.isLoading = false;
-      state.imageValue = null;
-      state.user = null;
-      // state.errorMessage = message;
-      // state.errorStatusCode = errorStatusCode;
-    });
+    builder.addCase(
+      profileImage.rejected,
+      (state, { payload: { errorStatusCode, message } }) => {
+        state.isLoading = false;
+        state.imageValue = null;
+        state.user = null;
+        state.errorMessage = message;
+        state.errorStatusCode = errorStatusCode;
+      }
+    );
     builder.addCase(profileName.pending, (state) => {
       state.isLoading = true;
     });
@@ -74,13 +77,16 @@ const profileSlice = createSlice({
       state.user = payload.user;
     });
 
-    builder.addCase(profileName.rejected, (state, { payload }) => {
-      state.isLoading = false;
-      state.imageValue = null;
-      state.user = null;
-      // state.errorMessage = message;
-      // state.errorStatusCode = errorStatusCode;
-    });
+    builder.addCase(
+      profileName.rejected,
+      (state, { payload: { errorStatusCode, message } }) => {
+        state.isLoading = false;
+        state.imageValue = null;
+        state.user = null;
+        state.errorMessage = message;
+        state.errorStatusCode = errorStatusCode;
+      }
+    );
   },
 });
 

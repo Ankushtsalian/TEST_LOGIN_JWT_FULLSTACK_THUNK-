@@ -14,18 +14,20 @@ const initialState = {
   registerUsername: "",
   registerPassword: "",
   registerResetPassword: "",
+  errorMessage: "",
+  errorStatusCode: "",
 };
 
 export const loginUser = createAsyncThunk(
   "user/loginUser",
-  async (formInput, thunkAPI) => {
+  (formInput, thunkAPI) => {
     return loginUserThunk("/login", formInput, thunkAPI);
   }
 );
 
 export const registerUser = createAsyncThunk(
   "user/registerUser",
-  async (formInput, thunkAPI) => {
+  (formInput, thunkAPI) => {
     return registerUserThunk("/register", formInput, thunkAPI);
   }
 );
@@ -63,12 +65,16 @@ const userSlice = createSlice({
       addTokenToLocalStorage(state.tokenLog);
     });
 
-    builder.addCase(loginUser.rejected, (state, { payload }) => {
-      removeTokenFromLocalStorage();
-      state.isLoading = false;
-      state.tokenLog = "";
-      alert(payload);
-    });
+    builder.addCase(
+      loginUser.rejected,
+      (state, { payload: { errorStatusCode, message } }) => {
+        removeTokenFromLocalStorage();
+        state.isLoading = false;
+        state.tokenLog = "";
+        state.errorMessage = message;
+        state.errorStatusCode = errorStatusCode;
+      }
+    );
     builder.addCase(registerUser.pending, (state) => {
       state.isLoading = true;
       removeTokenFromLocalStorage();
@@ -80,12 +86,16 @@ const userSlice = createSlice({
       addTokenToLocalStorage(state.tokenLog);
     });
 
-    builder.addCase(registerUser.rejected, (state, { payload }) => {
-      removeTokenFromLocalStorage();
-      state.isLoading = false;
-      state.tokenLog = "";
-      alert(payload);
-    });
+    builder.addCase(
+      registerUser.rejected,
+      (state, { payload: { errorStatusCode, message } }) => {
+        removeTokenFromLocalStorage();
+        state.isLoading = false;
+        state.tokenLog = "";
+        state.errorMessage = message;
+        state.errorStatusCode = errorStatusCode;
+      }
+    );
   },
 });
 
