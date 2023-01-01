@@ -19,8 +19,9 @@ const Protected = ({ children }) => {
   );
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  localStorage.setItem("Token", JSON.stringify(Token));
 
-  const token = localStorage.getItem("Token");
+  const token = getTokenFromLocalStorage();
   // useEffect(() => {
   // if (!token) {
   //   navigate("/login");

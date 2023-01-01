@@ -1,8 +1,8 @@
 export const addTokenToLocalStorage = (Token) => {
-  localStorage.setItem("Token", Token);
+  localStorage.setItem("Token", JSON.stringify(Token));
 };
 export const addProfileToLocalStorage = (src) => {
-  localStorage.setItem("profile", src);
+  localStorage.setItem("profile", JSON.stringify(src));
 };
 
 export const removeTokenFromLocalStorage = () => {
@@ -13,11 +13,11 @@ export const removeProfileFromLocalStorage = () => {
   localStorage?.removeItem("profile");
 };
 export const getProfileFromLocalStorage = () => {
-  const Token = localStorage?.getItem("profile") || "";
+  const Token = JSON.parse(localStorage?.getItem("profile")) || "";
   return Token;
 };
 
 export const getTokenFromLocalStorage = () => {
-  const Token = localStorage?.getItem("Token") || "";
+  const Token = JSON.parse(localStorage?.getItem("Token")) || "";
   return Token;
 };
