@@ -4,7 +4,7 @@ import {
   handleProfileInputState,
   profileImage,
   profileName,
-} from "../Redux/Profile-Store/Profile-Slice";
+} from "../Redux/index";
 import Loader from "./Loader";
 
 const Profile = () => {

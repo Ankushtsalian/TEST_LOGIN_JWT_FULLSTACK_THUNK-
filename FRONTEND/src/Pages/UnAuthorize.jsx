@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { ClearAllState } from "../Redux/Profile-Store/Profile-Slice";
+import { ClearAllState } from "../Redux/index";
 
 const UnAuthorize = () => {
   //   const { ClearAllState } = useSelector((state) => state.profile);

@@ -66,7 +66,7 @@ const productSlice = createSlice({
       state.public_id = "";
       state.imageValue = "";
     },
-    handleFormInput: (state, { payload: { name, value } }) => {
+    handleFormInputProduct: (state, { payload: { name, value } }) => {
       state[name] = value;
     },
   },
@@ -134,6 +134,6 @@ export const {
   handleSidebarMenu,
   ClearAllProfileInputState,
   ClearAllProductState,
-  handleFormInput,
+  handleFormInputProduct,
 } = productSlice.actions;
 export default productSlice.reducer;

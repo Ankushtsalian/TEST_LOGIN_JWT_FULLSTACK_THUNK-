@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { clearToken } from "../Redux/User-store/User-Slice";
+import { clearToken } from "../Redux/index";
 
 const Logout = () => {
   const { tokenLog } = useSelector((state) => state.user);

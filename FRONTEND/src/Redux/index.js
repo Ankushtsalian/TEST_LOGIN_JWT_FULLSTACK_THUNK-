@@ -5,8 +5,21 @@ import {
   registerUser,
   loginUser,
 } from "./User-store/User-Slice";
-import { ClearAllState } from "./Profile-Store/Profile-Slice";
-import { ClearAllProductState } from "./Product-store/Product-Slice";
+import {
+  ClearAllState,
+  handleProfileInputState,
+  profileImage,
+  profileName,
+} from "./Profile-Store/Profile-Slice";
+import {
+  ClearAllProductState,
+  ClearAllProfileInputState,
+  getAllProducts,
+  handleFormInputProduct,
+  productFile,
+  productFormData,
+  handleSidebarMenu,
+} from "./Product-store/Product-Slice";
 
 export {
   handleFormInput,
@@ -16,4 +29,13 @@ export {
   ClearAllState,
   ClearAllProductState,
   loginUser,
+  ClearAllProfileInputState,
+  getAllProducts,
+  handleFormInputProduct,
+  productFile,
+  productFormData,
+  handleProfileInputState,
+  profileImage,
+  profileName,
+  handleSidebarMenu,
 };

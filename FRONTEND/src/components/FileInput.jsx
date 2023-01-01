@@ -6,10 +6,10 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   ClearAllProfileInputState,
   getAllProducts,
-  handleFormInput,
+  handleFormInputProduct,
   productFile,
   productFormData,
-} from "../Redux/Product-store/Product-Slice";
+} from "../Redux/index";
 
 const FileInput = () => {
   const { isLoading, name, price, image, public_id } = useSelector(
@@ -43,7 +43,7 @@ const FileInput = () => {
 
   const handleInput = (e) => {
     const { name, value } = e.target;
-    dispatch(handleFormInput({ name, value }));
+    dispatch(handleFormInputProduct({ name, value }));
   };
 
   const handleForm = async (event) => {
