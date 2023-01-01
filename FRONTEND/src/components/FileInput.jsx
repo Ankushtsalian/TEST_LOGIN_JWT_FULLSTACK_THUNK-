@@ -3,41 +3,32 @@ import React, { useEffect, useState } from "react";
 import Product from "./Product";
 import FormRow from "./FormRow";
 import Loader from "./Loader";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  ClearAllProfileInputState,
+  getAllProducts,
+  handleFormInput,
+  productFile,
+} from "../Redux/Product-store/Product-Slice";
 const url = "http://localhost:5000/api/v1/products";
 const FileInput = () => {
-  const [fileFormData, setFileFormData] = useState({
-    name: "",
-    price: "",
-    imageDetail: {
-      image: "",
-      public_id: "",
-    },
-  });
-  const [productList, setProducts] = useState([]);
-
-  let imageValue;
-  let src;
-  const [isLoading, setIsLoading] = useState(false);
+  const { isLoading, src, productList, name, price, image, public_id } =
+    useSelector((state) => state.product);
+  const dispatch = useDispatch();
+  const fileFormData = {
+    name,
+    price,
+    imageDetail: { image, public_id },
+  };
 
   const fetchProducts = async () => {
-    try {
-      const products = await axios.get(url, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${localStorage.getItem("Token")}`,
-        },
-      });
-      src = products.data.src;
-      setProducts(products.data.products);
-    } catch (error) {
-      console.log(error);
-    }
+    dispatch(getAllProducts());
   };
 
   useEffect(() => {
     fetchProducts();
     return () => {
-      console.log("done");
+      console.log("done fetchProducts");
     };
   }, []);
 
@@ -45,42 +36,14 @@ const FileInput = () => {
     const imageFile = event.target.files[0];
     let formData = new FormData();
     formData = { ...formData, ["image"]: imageFile };
-    // formData.append("image", imageFile);
-    try {
-      setIsLoading(true);
-
-      const {
-        data: {
-          image: { src },
-          public_id,
-        },
-      } = await axios.post(`${url}/uploads`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${localStorage.getItem("Token")}`,
-        },
-      });
-      imageValue = src;
-      alert(imageValue);
-
-      setFileFormData((data) => ({
-        ...data,
-        imageDetail: {
-          image: imageValue,
-          public_id,
-        },
-      }));
-    } catch (error) {
-      imageValue = null;
-      console.log(error);
-    }
-    setIsLoading(false);
+    dispatch(productFile(formData));
   };
 
   const handleInput = (e) => {
     const { name, value } = e.target;
-    setFileFormData((data) => ({ ...data, [name]: value }));
+    dispatch(handleFormInput({ name, value }));
   };
+
   const handleForm = async (event) => {
     event.preventDefault();
     try {
@@ -91,6 +54,7 @@ const FileInput = () => {
       });
       alert("Image suceesfully Uploaded");
       fetchProducts();
+      dispatch(ClearAllProfileInputState());
     } catch (error) {
       alert(error.response.data.msg);
     }
@@ -98,7 +62,6 @@ const FileInput = () => {
 
   const handleDelete = async (e, id, publicId) => {
     e.preventDefault();
-    setIsLoading(true);
 
     try {
       await axios.delete(`${url}/${id}/query?publicId=${publicId}`, {
@@ -111,7 +74,6 @@ const FileInput = () => {
     } catch (error) {
       console.log(error);
     }
-    setIsLoading(false);
   };
 
   return (
@@ -120,6 +82,7 @@ const FileInput = () => {
         <form className="login-form">
           <FormRow
             name="name"
+            value={name}
             label="Name"
             onChange={handleInput}
             type="text"
@@ -129,6 +92,7 @@ const FileInput = () => {
             label="Price"
             onChange={handleInput}
             type="text"
+            value={price}
           />
 
           <div className="textbox-container">
@@ -155,10 +119,8 @@ const FileInput = () => {
         ) : (
           <Product
             isLoading={isLoading}
-            setIsLoading={setIsLoading}
             productList={productList}
             handleDelete={handleDelete}
-            src={src}
           />
         )}
       </div>

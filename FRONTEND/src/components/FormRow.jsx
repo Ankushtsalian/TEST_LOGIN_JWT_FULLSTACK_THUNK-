@@ -1,6 +1,6 @@
 import React from "react";
 
-const FormRow = ({ name, label, onChange, type }) => {
+const FormRow = ({ name, label, onChange, type, value }) => {
   return (
     <div className="textbox">
       <input
@@ -9,6 +9,7 @@ const FormRow = ({ name, label, onChange, type }) => {
         type={type}
         required
         name={name}
+        value={value}
         onChange={onChange}
       />
       <label>{label}</label>

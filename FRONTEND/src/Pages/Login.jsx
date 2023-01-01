@@ -11,6 +11,7 @@ import {
   handleFormInput,
 } from "../Redux/User-store/User-Slice";
 import { ClearAllState } from "../Redux/Profile-Store/Profile-Slice";
+import { ClearAllProductState } from "../Redux/Product-store/Product-Slice";
 
 const Login = () => {
   const { tokenLog, loginUsername, loginPassword } = useSelector(
@@ -25,6 +26,7 @@ const Login = () => {
     removeTokenFromLocalStorage();
     dispatch(clearToken());
     dispatch(ClearAllState());
+    dispatch(ClearAllProductState());
     return console.log("Register page entered");
   }, []);
 

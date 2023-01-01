@@ -9,6 +9,8 @@ import {
 } from "../Redux/User-store/User-Slice";
 import { removeTokenFromLocalStorage } from "../utils/Local-Storage";
 import { useEffect } from "react";
+import { ClearAllState } from "../Redux/Profile-Store/Profile-Slice";
+import { ClearAllProductState } from "../Redux/Product-store/Product-Slice";
 
 const Register = () => {
   const {
@@ -25,6 +27,7 @@ const Register = () => {
     removeTokenFromLocalStorage();
     dispatch(clearToken());
     dispatch(ClearAllState());
+    dispatch(ClearAllProductState());
 
     return console.log("Register page entered");
   }, []);
