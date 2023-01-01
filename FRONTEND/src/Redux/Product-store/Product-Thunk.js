@@ -14,9 +14,8 @@ export const getAllProductsThunk = async (url, thunkAPI) => {
     alert("product fetched");
     return products.data;
   } catch (error) {
-    const message = errorMessage(error);
-
-    return thunkAPI.rejectWithValue(message);
+    const { errorStatusCode, message } = errorMessage(error);
+    return thunkAPI.rejectWithValue({ errorStatusCode, message });
   }
 };
 
@@ -35,9 +34,8 @@ export const productFileThunk = async (url, formData, thunkAPI) => {
     alert(src);
     return { src, public_id };
   } catch (error) {
-    const message = errorMessage(error);
-
-    return thunkAPI.rejectWithValue(message);
+    const { errorStatusCode, message } = errorMessage(error);
+    return thunkAPI.rejectWithValue({ errorStatusCode, message });
   }
 };
 
@@ -46,9 +44,9 @@ export const productFormDataThunk = async (url, fileFormData, thunkAPI) => {
     await customFetch.post("/products", fileFormData, authHeader(token));
     alert("Image suceesfully Uploaded");
   } catch (error) {
-    const message = errorMessage(error);
+    const { errorStatusCode, message } = errorMessage(error);
 
-    return thunkAPI.rejectWithValue(message);
+    return thunkAPI.rejectWithValue({ errorStatusCode, message });
   }
 };
 
@@ -60,8 +58,8 @@ export const deleteProductThunk = async (url, { id, publicId }, thunkAPI) => {
     );
     alert("Product Deleted");
   } catch (error) {
-    const message = errorMessage(error);
+    const { errorStatusCode, message } = errorMessage(error);
 
-    return thunkAPI.rejectWithValue(message);
+    return thunkAPI.rejectWithValue({ errorStatusCode, message });
   }
 };

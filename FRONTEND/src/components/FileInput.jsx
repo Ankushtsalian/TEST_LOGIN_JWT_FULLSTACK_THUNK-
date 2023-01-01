@@ -10,13 +10,13 @@ import {
   productFile,
   productFormData,
 } from "../Redux/index";
+import errorMessage from "../utils/Error-Message";
 
 const FileInput = () => {
-  const { isLoading, name, price, image, public_id } = useSelector(
-    (state) => state.product
-  );
+  const { isLoading, name, price, image, public_id, errorMessage } =
+    useSelector((state) => state.product);
   const dispatch = useDispatch();
-
+  console.log(errorMessage);
   const fileFormData = {
     name,
     price,

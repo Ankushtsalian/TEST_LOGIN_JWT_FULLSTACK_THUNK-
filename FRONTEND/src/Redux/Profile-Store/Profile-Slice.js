@@ -11,6 +11,8 @@ const initialState = {
   uploaded: false,
   imageValue: getProfileFromLocalStorage(),
   user: "",
+  errorMessage: "",
+  errorStatusCode: "",
 };
 
 export const profileImage = createAsyncThunk(
@@ -58,8 +60,8 @@ const profileSlice = createSlice({
       state.isLoading = false;
       state.imageValue = null;
       state.user = null;
-
-      alert(payload);
+      // state.errorMessage = message;
+      // state.errorStatusCode = errorStatusCode;
     });
     builder.addCase(profileName.pending, (state) => {
       state.isLoading = true;
@@ -76,6 +78,8 @@ const profileSlice = createSlice({
       state.isLoading = false;
       state.imageValue = null;
       state.user = null;
+      // state.errorMessage = message;
+      // state.errorStatusCode = errorStatusCode;
     });
   },
 });

@@ -23,9 +23,9 @@ export const profileImageThunk = async (url, formData, thunkAPI) => {
     alert("Profile uploaded");
     return src;
   } catch (error) {
-    const message = errorMessage(error);
-
-    return thunkAPI.rejectWithValue(message);
+    console.log(error);
+    const { errorStatusCode, message } = errorMessage(error);
+    return thunkAPI.rejectWithValue({ errorStatusCode, message });
   }
 };
 
@@ -38,8 +38,7 @@ export const profileNameThunk = async (url, thunkAPI) => {
 
     return products.data;
   } catch (error) {
-    const message = errorMessage(error);
-
-    return thunkAPI.rejectWithValue(message);
+    const { errorStatusCode, message } = errorMessage(error);
+    return thunkAPI.rejectWithValue({ errorStatusCode, message });
   }
 };

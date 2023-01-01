@@ -3,7 +3,9 @@ const errorMessage = (error) => {
     (error.response && error.response.data && error.response.data.msg) ||
     error.message ||
     error.toString();
-  return message;
+  console.log(error.response);
+
+  return { errorStatusCode: error.response.status, message };
 };
 
 export default errorMessage;

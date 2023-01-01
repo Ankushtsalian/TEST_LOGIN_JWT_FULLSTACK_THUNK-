@@ -14,9 +14,9 @@ export const loginUserThunk = async (url, formInput, thunkAPI) => {
     addTokenToLocalStorage(response.data.msg.token);
     return response.data.msg.token;
   } catch (error) {
-    const message = errorMessage(error);
-
-    return thunkAPI.rejectWithValue(message);
+    const { errorStatusCode, message } = errorMessage(error);
+    alert(message);
+    return thunkAPI.rejectWithValue({ errorStatusCode, message });
   }
 };
 
@@ -37,8 +37,8 @@ export const registerUserThunk = async (url, formInput, thunkAPI) => {
 
     return response.data.msg.token;
   } catch (error) {
-    const message = errorMessage(error);
-
-    return thunkAPI.rejectWithValue(message);
+    const { errorStatusCode, message } = errorMessage(error);
+    alert(message);
+    return thunkAPI.rejectWithValue({ errorStatusCode, message });
   }
 };

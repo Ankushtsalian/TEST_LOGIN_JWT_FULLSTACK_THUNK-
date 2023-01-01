@@ -1,22 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { ClearAllState } from "../Redux/index";
+import {
+  ClearAllProductState,
+  ClearAllProfileInputState,
+  ClearAllState,
+  clearToken,
+  clearUserFormInput,
+} from "../Redux/index";
 
 const UnAuthorize = () => {
   //   const { ClearAllState } = useSelector((state) => state.profile);
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
-  //   useEffect(() => {
-  //     // if (!token) {
-
-  //     // }
-  //     return console.log("PROTECTED ROUTE ENTERED");
-  //   }, [token]);
+  // useEffect(() => {
+  //   return console.log("PROTECTED ROUTE ENTERED");
+  // }, []);
 
   setTimeout(() => {
+    // dispatch(ClearAllState());
+    dispatch(clearUserFormInput());
+    dispatch(clearToken());
     dispatch(ClearAllState());
+    dispatch(ClearAllProductState());
+    dispatch(ClearAllProfileInputState());
     navigate("/login");
   }, 2000);
 

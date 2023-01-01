@@ -18,31 +18,33 @@ const initialState = {
   public_id: "",
   imageValue: "",
   productList: [],
+  errorMessage: "",
+  errorStatusCode: "",
 };
 
 export const getAllProducts = createAsyncThunk(
   "product/getAllProducts",
-  async (thunkAPI) => {
-    return getAllProductsThunk("/products", thunkAPI);
+  (_, thunkAPI) => {
+    return getAllProductsThunk(_, thunkAPI);
   }
 );
 
 export const productFile = createAsyncThunk(
   "product/productFile",
-  async (formData, thunkAPI) => {
+  (formData, thunkAPI) => {
     return productFileThunk("/products/uploads", formData, thunkAPI);
   }
 );
 
 export const productFormData = createAsyncThunk(
   "product/productFormData",
-  async (fileFormData, thunkAPI) => {
+  (fileFormData, thunkAPI) => {
     return productFormDataThunk("/products", fileFormData, thunkAPI);
   }
 );
 export const deleteProduct = createAsyncThunk(
   "product/deleteProduct",
-  async ({ id, publicId }, thunkAPI) => {
+  ({ id, publicId }, thunkAPI) => {
     return deleteProductThunk("/products", { id, publicId }, thunkAPI);
   }
 );
@@ -81,12 +83,16 @@ const productSlice = createSlice({
       state.productList = payload.products;
     });
 
-    builder.addCase(getAllProducts.rejected, (state, { payload }) => {
-      state.isLoading = false;
-      state.productList = [];
+    builder.addCase(
+      getAllProducts.rejected,
+      (state, { payload: { errorStatusCode, message } }) => {
+        state.isLoading = false;
+        state.productList = [];
 
-      alert(payload);
-    });
+        state.errorMessage = message;
+        state.errorStatusCode = errorStatusCode;
+      }
+    );
     builder.addCase(productFile.pending, (state) => {
       state.isLoading = true;
     });
@@ -98,13 +104,17 @@ const productSlice = createSlice({
       state.public_id = payload.public_id;
     });
 
-    builder.addCase(productFile.rejected, (state, { payload }) => {
-      state.isLoading = false;
-      state.image = "";
-      state.public_id = "";
+    builder.addCase(
+      productFile.rejected,
+      (state, { payload: { errorStatusCode, message } }) => {
+        state.isLoading = false;
+        state.image = "";
+        state.public_id = "";
 
-      alert(payload);
-    });
+        state.errorMessage = message;
+        state.errorStatusCode = errorStatusCode;
+      }
+    );
     builder.addCase(productFormData.pending, (state) => {
       state.isLoading = true;
     });
@@ -113,9 +123,14 @@ const productSlice = createSlice({
       state.isLoading = false;
     });
 
-    builder.addCase(productFormData.rejected, (state, { payload }) => {
-      state.isLoading = false;
-    });
+    builder.addCase(
+      productFormData.rejected,
+      (state, { payload: { errorStatusCode, message } }) => {
+        state.isLoading = false;
+        state.errorMessage = message;
+        state.errorStatusCode = errorStatusCode;
+      }
+    );
     builder.addCase(deleteProduct.pending, (state) => {
       state.isLoading = true;
     });
@@ -124,9 +139,14 @@ const productSlice = createSlice({
       state.isLoading = false;
     });
 
-    builder.addCase(deleteProduct.rejected, (state, { payload }) => {
-      state.isLoading = false;
-    });
+    builder.addCase(
+      deleteProduct.rejected,
+      (state, { payload: { errorStatusCode, message } }) => {
+        state.isLoading = false;
+        state.errorMessage = message;
+        state.errorStatusCode = errorStatusCode;
+      }
+    );
   },
 });
 
