@@ -37,15 +37,21 @@ select:-webkit-autofill:focus {
   background-repeat: no-repeat;
   background-size: cover;
   font-family: "Euclid Circular A";
-  animation: rotate 1.5s infinite alternate linear;
+  animation: rotate 0.1s infinite alternate linear;
   color: #3a334e;
   height: 100%;
     --tw-bg-opacity: 1;
     background-color: rgb(30 41 59/var(--tw-bg-opacity));
+    /* background: url("./Assets/fifa.jpg"); */
+    animation: rotate 50s infinite alternate linear;
 
 }
 
-
+@keyframes rotate {
+  50% {
+    background-position: 100% 55%;
+  }
+}
 main {
  height: 100vh; 
  display: grid;

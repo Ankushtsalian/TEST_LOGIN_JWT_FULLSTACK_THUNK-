@@ -3,7 +3,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Password from "../components/Password";
 
-import { removeTokenFromLocalStorage } from "../utils/Local-Storage";
+import {
+  getTokenFromLocalStorage,
+  removeTokenFromLocalStorage,
+} from "../utils/Local-Storage";
 
 import {
   ClearAllProfileState,
@@ -24,9 +27,11 @@ const Login = () => {
 
   useEffect(() => {
     removeTokenFromLocalStorage();
-    dispatch(clearUserToken());
-    dispatch(ClearAllProfileState());
-    dispatch(ClearAllProductState());
+    if (getTokenFromLocalStorage()) {
+      dispatch(clearUserToken());
+      dispatch(ClearAllProfileState());
+      dispatch(ClearAllProductState());
+    }
     return console.log("Login page entered");
   }, []);
 

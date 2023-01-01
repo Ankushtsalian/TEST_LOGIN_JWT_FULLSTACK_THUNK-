@@ -27,7 +27,7 @@
 .sidebar {
   position: relative;
   /* top: 4.5rem; */
-  transition: all 0.85s;
+  /* transition: all 0.85s; */
   /* background-image: url("../Assets/background.svg"); */
   background-repeat: no-repeat;
   background-size: cover;
@@ -71,6 +71,13 @@
 }
 .sidebar-container{
   border: 1px solid black;
+  transition: all 0.85s;
+  background-image: url("../Assets/background.svg");
+  animation: rotate 1.5s infinite alternate linear;
+  opacity: 0.75;
+  font-weight: bolder;
+
+
 }
 
  

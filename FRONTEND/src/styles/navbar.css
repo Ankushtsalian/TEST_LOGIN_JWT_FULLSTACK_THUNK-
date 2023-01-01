@@ -31,7 +31,7 @@ button {
 .navbar {
 
     z-index: 1;
-    
+
     font-weight: 900;
     font-size: large;
     left: 0;
@@ -40,18 +40,68 @@ button {
     align-items: stretch;
     height: 72px;
     /* background: transparent; */
-    animation: rotate 9.5s infinite alternate linear;
+    /* opacity: 0.85; */
     color: #fff !important;
     border-bottom: 1px solid #000;
     --tw-bg-opacity: 1;
     background-color: rgb(30 41 59/var(--tw-bg-opacity));
     /* background-image: url("../Assets/background.svg"); */
+    background-image: url("../Assets/fifac.jpg");
+    animation: rotate 55s infinite alternate linear;
+
+}
+
+.profile-dropdown-container:before {
+    position: absolute;
+    top: -9.5px;
+    left: 43.5%;
+    display: inline-block;
+    border-right: 7px solid transparent;
+    border-bottom: 8px solid #EEE;
+    border-left: 7px solid transparent;
+    background: url("../Assets/fifac.jpg");
+    animation: rotate 1.5s infinite alternate linear;
+    content: '';
+}
+
+/* .profile-img-con::after {
+    position: absolute;
+    bottom: -14px;
+    right:42.5%;
+    display: inline-block;
+    border-right: 7px solid transparent;
+    border-top: 8px solid #EEE;
+    border-left: 7px solid transparent;
+    content: '';
+} */
+.profile-container:hover .profile-dropdown-container {
+    visibility: visible;
+    transition: all 0.85s;
+
+
+}
+
+.profile-dropdown-container {
+    position: absolute;
+    right: 0;
+    top: 50px;
+    min-width: 150px;
+    min-height: 150px;
+    border: 1px solid #fff;
     /* background-image: url("../Assets/fifac.jpg"); */
+    animation: rotate 9.5s infinite alternate linear;
+    transition: all 0.85s;
+
+
+    visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
 }
 
 /* .burger { */
-    /* z-index: 3;
+/* z-index: 3;
     right: 0;
     display: grid;
     place-items: center;
@@ -188,7 +238,7 @@ body.open .burger {
 
 @media (width >=500px) {
     /* .dropdown-menu>button { */
-        /* opacity: 0.6; */
+    /* opacity: 0.6; */
     /* } */
 
     .dropdown:hover .button {
@@ -200,28 +250,35 @@ body.open .burger {
     opacity: 1;
 }
 
-.profile-container p{ min-width: 70px}
-.profile-container{
-    align-content: center;display: flex;
+.profile-container p {
+    min-width: 70px
+}
+
+.profile-container {
+    align-content: center;
+    display: flex;
     justify-content: center;
     align-items: center;
-   max-width: 300px;
-margin: 20px;
-cursor: pointer;
-
-}
-.profile-img{
-width: 50px;
-height: 50px;
-border-radius: 55%;
-margin: 20px;
-object-fit: fill;
+    max-width: 300px;
+    margin: 20px;
+    cursor: pointer;
+    position: relative;
 
 }
 
-.file{
+.profile-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 55%;
+    margin: 20px;
+    object-fit: fill;
+
+}
+
+.file {
     visibility: hidden;
 }
-.show{
-    visibility:visible;
+
+.show {
+    visibility: visible;
 }

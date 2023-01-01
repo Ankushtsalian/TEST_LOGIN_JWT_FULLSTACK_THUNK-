@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import { useNavigate } from "react-router-dom";
-import {
-  ClearAllProductState,
-  ClearAllProfileState,
-  clearUserToken,
-} from "../Redux";
-import { getTokenFromLocalStorage } from "../utils/Local-Storage";
+// import { useNavigate } from "react-router-dom";
+// import {
+//   ClearAllProductState,
+//   ClearAllProfileState,
+//   clearUserToken,
+// } from "../Redux";
+// import { getTokenFromLocalStorage } from "../utils/Local-Storage";
 
 import UnAuthorize from "./UnAuthorize";
 
@@ -18,29 +18,11 @@ const Protected = ({ children }) => {
   const { errorStatusCode: productError } = useSelector(
     (state) => state.product
   );
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
 
-  // const token = getTokenFromLocalStorage();
-  // useEffect(() => {
-  // if (!token) {
-  //   navigate("/login");
-  // }
-  if (userError === 401 || profileError === 401 || productError === 401) {
-    dispatch(clearUserToken());
-    dispatch(ClearAllProfileState());
-    dispatch(ClearAllProductState());
-  }
+  if (userError === 401 || profileError === 401 || productError === 401)
+    return <UnAuthorize />;
 
-  return (
-    <div className="container">
-      {userError !== 401 || profileError !== 401 || productError !== 401 ? (
-        <>{children}</>
-      ) : (
-        <UnAuthorize />
-      )}
-    </div>
-  );
+  return <div className="container">{children}</div>;
 };
 
 export default Protected;

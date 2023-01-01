@@ -2,7 +2,10 @@ import { Link, useNavigate } from "react-router-dom";
 import Password from "../components/Password";
 import { useDispatch, useSelector } from "react-redux";
 
-import { removeTokenFromLocalStorage } from "../utils/Local-Storage";
+import {
+  getTokenFromLocalStorage,
+  removeTokenFromLocalStorage,
+} from "../utils/Local-Storage";
 import { useEffect } from "react";
 import {
   handleFormInput,
@@ -25,10 +28,11 @@ const Register = () => {
 
   useEffect(() => {
     removeTokenFromLocalStorage();
-    dispatch(clearUserToken());
-    dispatch(ClearAllProfileState());
-    dispatch(ClearAllProductState());
-
+    if (getTokenFromLocalStorage()) {
+      dispatch(clearUserToken());
+      dispatch(ClearAllProfileState());
+      dispatch(ClearAllProductState());
+    }
     return console.log("Register page entered");
   }, []);
 

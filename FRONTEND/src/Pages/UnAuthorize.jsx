@@ -8,6 +8,7 @@ import {
   clearUserToken,
   clearUserFormInput,
 } from "../Redux/index";
+import { getTokenFromLocalStorage } from "../utils/Local-Storage";
 
 const UnAuthorize = () => {
   const dispatch = useDispatch();
@@ -16,14 +17,24 @@ const UnAuthorize = () => {
   // useEffect(() => {
   //   return console.log("PROTECTED ROUTE ENTERED");
   // }, []);
+  // if (userError === 401 || profileError === 401 || productError === 401) {
+  //   alert("UNAUTHORIZED USER, Please login");
 
+  //   dispatch(clearUserToken());
+  //   dispatch(ClearAllProfileState());
+  //   dispatch(ClearAllProductState());
+  // }
   setTimeout(() => {
-    console.log("UNAUTH");
-    dispatch(clearUserFormInput());
-    dispatch(clearUserToken());
-    dispatch(ClearAllProfileState());
-    dispatch(ClearAllProductState());
-    dispatch(ClearAllProductInputState());
+    alert("UNAUTHORIZED USER, Please login");
+
+    if (getTokenFromLocalStorage()) {
+      console.log("UNAUTHORIZED USER, Please login");
+      // dispatch(clearUserFormInput());
+      dispatch(clearUserToken());
+      dispatch(ClearAllProfileState());
+      dispatch(ClearAllProductState());
+      // dispatch(ClearAllProductInputState());
+    }
     navigate("/login");
   }, 1000);
 

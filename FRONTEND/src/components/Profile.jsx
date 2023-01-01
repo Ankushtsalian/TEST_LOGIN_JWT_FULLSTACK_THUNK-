@@ -34,15 +34,23 @@ const Profile = () => {
   if (isLoading) return <Loader />;
   return (
     <div className="profile-container">
-      <input
-        type="file"
-        className={`${!uploaded ? "file" : "show"}`}
-        onChange={handleFileInput}
-      />
-      <div onClick={() => dispatch(handleProfileInputState())}>
+      <div
+        className="profile-img-con"
+        onClick={() => dispatch(handleProfileInputState())}
+      >
         <img className="profile-img" src={imageValue} alt="profile-img" />
       </div>
       <p title={user}>Welcome {String(user).split(" ")[0]}</p>
+
+      {uploaded && (
+        <div className="profile-dropdown-container">
+          <input
+            type="file"
+            className={`${!uploaded ? "file" : "show"}`}
+            onChange={handleFileInput}
+          />
+        </div>
+      )}
     </div>
   );
 };

@@ -109,8 +109,9 @@ pre {
 }
 
 
-.product-img:hover {      width: 350px;
-    height: 300px;}
+.product-img:hover {      width: 280px;
+    height: 240px;
+}
 .product-img {
  
     width: 250px;
