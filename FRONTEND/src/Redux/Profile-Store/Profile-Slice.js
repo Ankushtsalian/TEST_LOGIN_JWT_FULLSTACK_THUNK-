@@ -37,11 +37,13 @@ const profileSlice = createSlice({
     handleProfileInputState: (state) => {
       state.uploaded = !state.uploaded;
     },
-    ClearAllState: (state) => {
+    ClearAllProfileState: (state) => {
       state.tokenLog = "";
       state.uploaded = false;
       state.imageValue = "";
       state.user = "";
+      state.errorMessage = "";
+      state.errorStatusCode = "";
     },
   },
   extraReducers: (builder) => {
@@ -90,5 +92,6 @@ const profileSlice = createSlice({
   },
 });
 
-export const { handleProfileInputState, ClearAllState } = profileSlice.actions;
+export const { handleProfileInputState, ClearAllProfileState } =
+  profileSlice.actions;
 export default profileSlice.reducer;

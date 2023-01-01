@@ -1,19 +1,19 @@
 import {
   handleFormInput,
   clearUserFormInput,
-  clearToken,
+  clearUserToken,
   registerUser,
   loginUser,
 } from "./User-store/User-Slice";
 import {
-  ClearAllState,
+  ClearAllProfileState,
   handleProfileInputState,
   profileImage,
   profileName,
 } from "./Profile-Store/Profile-Slice";
 import {
   ClearAllProductState,
-  ClearAllProfileInputState,
+  ClearAllProductInputState,
   getAllProducts,
   handleFormInputProduct,
   productFile,
@@ -24,12 +24,12 @@ import {
 export {
   handleFormInput,
   clearUserFormInput,
-  clearToken,
+  clearUserToken,
   registerUser,
-  ClearAllState,
+  ClearAllProfileState,
   ClearAllProductState,
   loginUser,
-  ClearAllProfileInputState,
+  ClearAllProductInputState,
   getAllProducts,
   handleFormInputProduct,
   productFile,

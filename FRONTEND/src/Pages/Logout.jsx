@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { clearToken } from "../Redux/index";
+import { clearUserToken } from "../Redux/index";
 
 const Logout = () => {
   const { tokenLog } = useSelector((state) => state.user);
@@ -10,7 +10,7 @@ const Logout = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    dispatch(clearToken());
+    dispatch(clearUserToken());
   };
 
   useEffect(() => {

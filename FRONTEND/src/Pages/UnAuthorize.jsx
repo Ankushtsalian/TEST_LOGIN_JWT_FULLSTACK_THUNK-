@@ -3,14 +3,13 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
   ClearAllProductState,
-  ClearAllProfileInputState,
-  ClearAllState,
-  clearToken,
+  ClearAllProductInputState,
+  ClearAllProfileState,
+  clearUserToken,
   clearUserFormInput,
 } from "../Redux/index";
 
 const UnAuthorize = () => {
-  //   const { ClearAllState } = useSelector((state) => state.profile);
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -19,14 +18,14 @@ const UnAuthorize = () => {
   // }, []);
 
   setTimeout(() => {
-    // dispatch(ClearAllState());
+    console.log("UNAUTH");
     dispatch(clearUserFormInput());
-    dispatch(clearToken());
-    dispatch(ClearAllState());
+    dispatch(clearUserToken());
+    dispatch(ClearAllProfileState());
     dispatch(ClearAllProductState());
-    dispatch(ClearAllProfileInputState());
+    dispatch(ClearAllProductInputState());
     navigate("/login");
-  }, 2000);
+  }, 1000);
 
   return <h1>---------------NOT AUTHORIZED---------------</h1>;
 };

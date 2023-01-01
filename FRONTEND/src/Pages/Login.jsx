@@ -6,12 +6,12 @@ import Password from "../components/Password";
 import { removeTokenFromLocalStorage } from "../utils/Local-Storage";
 
 import {
-  ClearAllState,
+  ClearAllProfileState,
   ClearAllProductState,
   loginUser,
   handleFormInput,
   clearUserFormInput,
-  clearToken,
+  clearUserToken,
 } from "../Redux/index";
 
 const Login = () => {
@@ -23,12 +23,11 @@ const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("login init");
     removeTokenFromLocalStorage();
-    dispatch(clearToken());
-    dispatch(ClearAllState());
+    dispatch(clearUserToken());
+    dispatch(ClearAllProfileState());
     dispatch(ClearAllProductState());
-    return console.log("Register page entered");
+    return console.log("Login page entered");
   }, []);
 
   const handleLogin = async () => {

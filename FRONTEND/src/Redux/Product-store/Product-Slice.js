@@ -59,8 +59,11 @@ const productSlice = createSlice({
     },
     ClearAllProductState: (state) => {
       state.tokenLog = "";
+      state.productList = [];
+      state.errorMessage = "";
+      state.errorStatusCode = "";
     },
-    ClearAllProfileInputState: (state) => {
+    ClearAllProductInputState: (state) => {
       state.name = "";
       state.price = "";
       state.image = "";
@@ -152,7 +155,7 @@ const productSlice = createSlice({
 
 export const {
   handleSidebarMenu,
-  ClearAllProfileInputState,
+  ClearAllProductInputState,
   ClearAllProductState,
   handleFormInputProduct,
 } = productSlice.actions;

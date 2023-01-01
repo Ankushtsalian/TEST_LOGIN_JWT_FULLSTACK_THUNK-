@@ -4,7 +4,7 @@ import FormRow from "./FormRow";
 import Loader from "./Loader";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  ClearAllProfileInputState,
+  ClearAllProductInputState,
   getAllProducts,
   handleFormInputProduct,
   productFile,
@@ -15,12 +15,9 @@ import errorMessage from "../utils/Error-Message";
 const FileInput = () => {
   const { isLoading, name, price, image, public_id, errorMessage } =
     useSelector((state) => state.product);
-  const { errorMessage: msg, errorStatusCode } = useSelector(
-    (state) => state.profile
-  );
+
   const dispatch = useDispatch();
-  console.log("prod:", errorMessage);
-  console.log("profile", msg, errorStatusCode);
+
   const fileFormData = {
     name,
     price,
@@ -55,7 +52,7 @@ const FileInput = () => {
     dispatch(productFormData(fileFormData));
 
     fetchProducts();
-    dispatch(ClearAllProfileInputState());
+    dispatch(ClearAllProductInputState());
   };
 
   if (isLoading) return <Loader />;

@@ -44,8 +44,10 @@ const userSlice = createSlice({
       state.registerPassword = "";
       state.registerResetPassword = "";
     },
-    clearToken: (state) => {
+    clearUserToken: (state) => {
       state.tokenLog = "";
+      state.errorMessage = "";
+      state.errorStatusCode = "";
     },
 
     handleFormInput: (state, { payload: { name, value } }) => {
@@ -60,6 +62,8 @@ const userSlice = createSlice({
     });
 
     builder.addCase(loginUser.fulfilled, (state, { payload }) => {
+      state.errorMessage = "";
+      state.errorStatusCode = "";
       state.isLoading = false;
       state.tokenLog = payload;
       addTokenToLocalStorage(state.tokenLog);
@@ -99,6 +103,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { clearToken, handleFormInput, clearUserFormInput } =
+export const { clearUserToken, handleFormInput, clearUserFormInput } =
   userSlice.actions;
 export default userSlice.reducer;

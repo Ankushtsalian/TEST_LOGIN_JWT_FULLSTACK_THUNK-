@@ -7,9 +7,9 @@ import { useEffect } from "react";
 import {
   handleFormInput,
   clearUserFormInput,
-  clearToken,
+  clearUserToken,
   registerUser,
-  ClearAllState,
+  ClearAllProfileState,
   ClearAllProductState,
 } from "../Redux/index";
 const Register = () => {
@@ -25,8 +25,8 @@ const Register = () => {
 
   useEffect(() => {
     removeTokenFromLocalStorage();
-    dispatch(clearToken());
-    dispatch(ClearAllState());
+    dispatch(clearUserToken());
+    dispatch(ClearAllProfileState());
     dispatch(ClearAllProductState());
 
     return console.log("Register page entered");
