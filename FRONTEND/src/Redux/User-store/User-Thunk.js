@@ -1,5 +1,6 @@
 import authHeader from "../../utils/Auth-Header";
 import customFetch from "../../utils/Axios";
+import errorMessage from "../../utils/Error-Message";
 import { addTokenToLocalStorage } from "../../utils/Local-Storage";
 // import customFetch, { checkForUnauthorizedResponse } from "../../utils/axios";
 
@@ -9,13 +10,12 @@ export const loginUserThunk = async (url, formInput, thunkAPI) => {
     setTimeout(() => {
       alert(`Login Successfull with username : ${response.data.msg.username}`);
     }, 250);
+
     addTokenToLocalStorage(response.data.msg.token);
     return response.data.msg.token;
   } catch (error) {
-    const message =
-      (error.response && error.response.data && error.response.data.msg) ||
-      error.message ||
-      error.toString();
+    const message = errorMessage(error);
+
     return thunkAPI.rejectWithValue(message);
   }
 };
@@ -37,10 +37,8 @@ export const registerUserThunk = async (url, formInput, thunkAPI) => {
 
     return response.data.msg.token;
   } catch (error) {
-    const message =
-      (error.response && error.response.data && error.response.data.msg) ||
-      error.message ||
-      error.toString();
+    const message = errorMessage(error);
+
     return thunkAPI.rejectWithValue(message);
   }
 };

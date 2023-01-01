@@ -1,23 +1,21 @@
 import authHeader from "../../utils/Auth-Header";
 import customFetch from "../../utils/Axios";
+import errorMessage from "../../utils/Error-Message";
 import { getTokenFromLocalStorage } from "../../utils/Local-Storage";
 // import customFetch, { checkForUnauthorizedResponse } from "../../utils/axios";
 const token = getTokenFromLocalStorage();
 
-export const getAllProductsThunk = async (url, formInput, thunkAPI) => {
+export const getAllProductsThunk = async (url, thunkAPI) => {
   try {
     const products = await customFetch.get(
       "/products",
       authHeader(token, true)
     );
     alert("product fetched");
-    // console.log(products.data.products);
     return products.data;
   } catch (error) {
-    const message =
-      (error.response && error.response.data && error.response.data.msg) ||
-      error.message ||
-      error.toString();
+    const message = errorMessage(error);
+
     return thunkAPI.rejectWithValue(message);
   }
 };
@@ -37,10 +35,8 @@ export const productFileThunk = async (url, formData, thunkAPI) => {
     alert(src);
     return { src, public_id };
   } catch (error) {
-    const message =
-      (error.response && error.response.data && error.response.data.msg) ||
-      error.message ||
-      error.toString();
+    const message = errorMessage(error);
+
     return thunkAPI.rejectWithValue(message);
   }
 };
@@ -50,10 +46,8 @@ export const productFormDataThunk = async (url, fileFormData, thunkAPI) => {
     await customFetch.post("/products", fileFormData, authHeader(token));
     alert("Image suceesfully Uploaded");
   } catch (error) {
-    const message =
-      (error.response && error.response.data && error.response.data.msg) ||
-      error.message ||
-      error.toString();
+    const message = errorMessage(error);
+
     return thunkAPI.rejectWithValue(message);
   }
 };
@@ -66,10 +60,8 @@ export const deleteProductThunk = async (url, { id, publicId }, thunkAPI) => {
     );
     alert("Product Deleted");
   } catch (error) {
-    const message =
-      (error.response && error.response.data && error.response.data.msg) ||
-      error.message ||
-      error.toString();
+    const message = errorMessage(error);
+
     return thunkAPI.rejectWithValue(message);
   }
 };

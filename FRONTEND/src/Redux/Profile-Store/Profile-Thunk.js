@@ -1,5 +1,6 @@
 import authHeader from "../../utils/Auth-Header";
 import customFetch from "../../utils/Axios";
+import errorMessage from "../../utils/Error-Message";
 import {
   addProfileToLocalStorage,
   getTokenFromLocalStorage,
@@ -22,10 +23,8 @@ export const profileImageThunk = async (url, formData, thunkAPI) => {
     alert("Profile uploaded");
     return src;
   } catch (error) {
-    const message =
-      (error.response && error.response.data && error.response.data.msg) ||
-      error.message ||
-      error.toString();
+    const message = errorMessage(error);
+
     return thunkAPI.rejectWithValue(message);
   }
 };
@@ -39,10 +38,8 @@ export const profileNameThunk = async (url, thunkAPI) => {
 
     return products.data;
   } catch (error) {
-    const message =
-      (error.response && error.response.data && error.response.data.msg) ||
-      error.message ||
-      error.toString();
+    const message = errorMessage(error);
+
     return thunkAPI.rejectWithValue(message);
   }
 };

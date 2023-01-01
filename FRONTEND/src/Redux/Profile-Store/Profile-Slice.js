@@ -1,11 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import {
-  addProfileToLocalStorage,
-  addTokenToLocalStorage,
   getProfileFromLocalStorage,
   getTokenFromLocalStorage,
-  removeProfileFromLocalStorage,
-  removeTokenFromLocalStorage,
 } from "../../utils/Local-Storage";
 import { profileImageThunk, profileNameThunk } from "./Profile-Thunk";
 
@@ -15,11 +11,6 @@ const initialState = {
   uploaded: false,
   imageValue: getProfileFromLocalStorage(),
   user: "",
-  // loginUsername: "",
-  // loginPassword: "",
-  // registerUsername: "",
-  // registerPassword: "",
-  // registerResetPassword: "",
 };
 
 export const profileImage = createAsyncThunk(
@@ -50,9 +41,6 @@ const profileSlice = createSlice({
       state.imageValue = "";
       state.user = "";
     },
-    // handleFormInput: (state, { payload: { name, value } }) => {
-    //   state[name] = value;
-    // },
   },
   extraReducers: (builder) => {
     builder.addCase(profileImage.pending, (state) => {
@@ -82,14 +70,12 @@ const profileSlice = createSlice({
       state.isLoading = false;
       state.imageValue = payload.src;
       state.user = payload.user;
-      // addProfileToLocalStorage(payload.src);
     });
 
     builder.addCase(profileName.rejected, (state, { payload }) => {
       state.isLoading = false;
       state.imageValue = null;
       state.user = null;
-      alert(payload);
     });
   },
 });

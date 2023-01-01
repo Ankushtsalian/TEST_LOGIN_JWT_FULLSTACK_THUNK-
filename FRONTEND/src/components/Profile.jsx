@@ -5,9 +5,12 @@ import {
   profileImage,
   profileName,
 } from "../Redux/Profile-Store/Profile-Slice";
+import Loader from "./Loader";
 
 const Profile = () => {
-  const { uploaded, imageValue, user } = useSelector((state) => state.profile);
+  const { uploaded, imageValue, user, isLoading } = useSelector(
+    (state) => state.profile
+  );
   const dispatch = useDispatch();
 
   const fetchProfile = async () => {
@@ -28,7 +31,7 @@ const Profile = () => {
 
     dispatch(profileImage(formData));
   };
-
+  if (isLoading) return <Loader />;
   return (
     <div className="profile-container">
       <input
