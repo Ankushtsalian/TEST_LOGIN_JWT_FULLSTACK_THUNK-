@@ -27,8 +27,8 @@ const Register = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    removeTokenFromLocalStorage();
     if (getTokenFromLocalStorage()) {
+      removeTokenFromLocalStorage();
       dispatch(clearUserToken());
       dispatch(ClearAllProfileState());
       dispatch(ClearAllProductState());
