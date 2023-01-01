@@ -1,5 +1,4 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Product from "./Product";
 import FormRow from "./FormRow";
 import Loader from "./Loader";
@@ -9,12 +8,15 @@ import {
   getAllProducts,
   handleFormInput,
   productFile,
+  productFormData,
 } from "../Redux/Product-store/Product-Slice";
-const url = "http://localhost:5000/api/v1/products";
+
 const FileInput = () => {
-  const { isLoading, src, productList, name, price, image, public_id } =
-    useSelector((state) => state.product);
+  const { isLoading, name, price, image, public_id } = useSelector(
+    (state) => state.product
+  );
   const dispatch = useDispatch();
+
   const fileFormData = {
     name,
     price,
@@ -46,35 +48,13 @@ const FileInput = () => {
 
   const handleForm = async (event) => {
     event.preventDefault();
-    try {
-      await axios.post(url, fileFormData, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("Token")}`,
-        },
-      });
-      alert("Image suceesfully Uploaded");
-      fetchProducts();
-      dispatch(ClearAllProfileInputState());
-    } catch (error) {
-      alert(error.response.data.msg);
-    }
+    dispatch(productFormData(fileFormData));
+
+    fetchProducts();
+    dispatch(ClearAllProfileInputState());
   };
 
-  const handleDelete = async (e, id, publicId) => {
-    e.preventDefault();
-
-    try {
-      await axios.delete(`${url}/${id}/query?publicId=${publicId}`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("Token")}`,
-        },
-      });
-      alert("Product Deleted");
-      fetchProducts();
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  if (isLoading) return <Loader />;
 
   return (
     <>
@@ -104,25 +84,13 @@ const FileInput = () => {
               onChange={handleFileInput}
             />
           </div>
-          {isLoading ? (
-            <Loader />
-          ) : (
-            <button className="control" type="button" onClick={handleForm}>
-              Submit
-            </button>
-          )}
+          <button className="control" type="button" onClick={handleForm}>
+            Submit
+          </button>
         </form>
       </div>
       <div className="product-img-container">
-        {isLoading ? (
-          <Loader />
-        ) : (
-          <Product
-            isLoading={isLoading}
-            productList={productList}
-            handleDelete={handleDelete}
-          />
-        )}
+        <Product />
       </div>
     </>
   );

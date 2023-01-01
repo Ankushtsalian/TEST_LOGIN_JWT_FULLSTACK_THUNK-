@@ -35,8 +35,36 @@ export const productFileThunk = async (url, formData, thunkAPI) => {
       authHeader(token, true)
     );
     alert(src);
-    // console.log({ productFileThunk: { src, public_id } });
     return { src, public_id };
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.msg) ||
+      error.message ||
+      error.toString();
+    return thunkAPI.rejectWithValue(message);
+  }
+};
+
+export const productFormDataThunk = async (url, fileFormData, thunkAPI) => {
+  try {
+    await customFetch.post("/products", fileFormData, authHeader(token));
+    alert("Image suceesfully Uploaded");
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.msg) ||
+      error.message ||
+      error.toString();
+    return thunkAPI.rejectWithValue(message);
+  }
+};
+
+export const deleteProductThunk = async (url, { id, publicId }, thunkAPI) => {
+  try {
+    await customFetch.delete(
+      `products/${id}/query?publicId=${publicId}`,
+      authHeader(token)
+    );
+    alert("Product Deleted");
   } catch (error) {
     const message =
       (error.response && error.response.data && error.response.data.msg) ||

@@ -1,6 +1,19 @@
-import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  deleteProduct,
+  getAllProducts,
+} from "../Redux/Product-store/Product-Slice";
 
-const Product = ({ productList, handleDelete }) => {
+const Product = () => {
+  const { productList } = useSelector((state) => state.product);
+  const dispatch = useDispatch();
+
+  const handleDelete = async (e, id, publicId) => {
+    e.preventDefault();
+
+    dispatch(deleteProduct({ id, publicId }));
+    dispatch(getAllProducts());
+  };
   return (
     <>
       {productList.map((product) => {

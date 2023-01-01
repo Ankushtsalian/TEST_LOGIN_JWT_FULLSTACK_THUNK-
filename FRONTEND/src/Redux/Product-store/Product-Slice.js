@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { getTokenFromLocalStorage } from "../../utils/Local-Storage";
 import {
-  addTokenToLocalStorage,
-  getTokenFromLocalStorage,
-  removeTokenFromLocalStorage,
-} from "../../utils/Local-Storage";
-import { profileNameThunk } from "../Profile-Store/Profile-Thunk";
-import { getAllProductsThunk, productFileThunk } from "./Product-Thunk";
+  deleteProductThunk,
+  getAllProductsThunk,
+  productFileThunk,
+  productFormDataThunk,
+} from "./Product-Thunk";
 
 const initialState = {
   tokenLog: getTokenFromLocalStorage(),
@@ -31,6 +31,19 @@ export const productFile = createAsyncThunk(
   "product/productFile",
   async (formData, thunkAPI) => {
     return productFileThunk("/products/uploads", formData, thunkAPI);
+  }
+);
+
+export const productFormData = createAsyncThunk(
+  "product/productFormData",
+  async (fileFormData, thunkAPI) => {
+    return productFormDataThunk("/products", fileFormData, thunkAPI);
+  }
+);
+export const deleteProduct = createAsyncThunk(
+  "product/deleteProduct",
+  async ({ id, publicId }, thunkAPI) => {
+    return deleteProductThunk("/products", { id, publicId }, thunkAPI);
   }
 );
 
@@ -91,6 +104,28 @@ const productSlice = createSlice({
       state.public_id = "";
 
       alert(payload);
+    });
+    builder.addCase(productFormData.pending, (state) => {
+      state.isLoading = true;
+    });
+
+    builder.addCase(productFormData.fulfilled, (state, { payload }) => {
+      state.isLoading = false;
+    });
+
+    builder.addCase(productFormData.rejected, (state, { payload }) => {
+      state.isLoading = false;
+    });
+    builder.addCase(deleteProduct.pending, (state) => {
+      state.isLoading = true;
+    });
+
+    builder.addCase(deleteProduct.fulfilled, (state, { payload }) => {
+      state.isLoading = false;
+    });
+
+    builder.addCase(deleteProduct.rejected, (state, { payload }) => {
+      state.isLoading = false;
     });
   },
 });

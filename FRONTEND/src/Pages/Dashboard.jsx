@@ -3,9 +3,11 @@ import Sidebar from "../components/Sidebar";
 import "../styles/dashboard.css";
 import FileInput from "../components/FileInput";
 import { useSelector } from "react-redux";
+import Loader from "../components/Loader";
 
 const Dashboard = () => {
-  const { isClosed } = useSelector((state) => state.product);
+  const { isClosed, isLoading } = useSelector((state) => state.product);
+
   return (
     <div
       className={`${!isClosed ? "main-container-hide" : "main-container-show"}
