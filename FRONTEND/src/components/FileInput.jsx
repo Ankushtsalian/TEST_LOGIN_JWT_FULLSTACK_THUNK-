@@ -53,7 +53,7 @@ const FileInput = () => {
     dispatch(productFormData(fileFormData));
 
     fetchProducts();
-    dispatch(ClearAllProductInputState());
+    // dispatch(ClearAllProductInputState());
   };
 
   useEffect(() => {
@@ -66,7 +66,7 @@ const FileInput = () => {
     };
   }, []);
 
-  if (!tokenLog || errorMessage || errorStatusCode === 401) {
+  if (!tokenLog || errorStatusCode === 401) {
     console.log(
       ".............................NAVIGATING....................................."
     );

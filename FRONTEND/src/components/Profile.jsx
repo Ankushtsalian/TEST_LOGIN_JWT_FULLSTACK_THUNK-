@@ -42,7 +42,8 @@ const Profile = () => {
       console.log("done fetchProfile2");
     };
   }, []);
-  if (!tokenLog || errorMessage || errorStatusCode === 401) {
+
+  if (!tokenLog || errorStatusCode === 401) {
     console.log(
       ".............................NAVIGATING....PROFILE................................."
     );
