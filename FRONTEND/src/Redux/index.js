@@ -20,6 +20,7 @@ import {
   productFile,
   productFormData,
   handleSidebarMenu,
+  deleteProduct,
 } from "./Product-store/Product-Slice";
 
 export {
@@ -40,4 +41,5 @@ export {
   profileName,
   handleSidebarMenu,
   logoutUser,
+  deleteProduct,
 };

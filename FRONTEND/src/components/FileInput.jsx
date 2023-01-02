@@ -1,16 +1,15 @@
 import React, { useEffect } from "react";
+import { Navigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import Product from "./Product";
 import FormRow from "./FormRow";
 import Loader from "./Loader";
-import { useDispatch, useSelector } from "react-redux";
 import {
   getAllProducts,
   handleFormInputProduct,
   productFile,
   productFormData,
 } from "../Redux/index";
-
-import { Navigate } from "react-router-dom";
 
 const FileInput = () => {
   const { isLoading, name, price, image, public_id, errorStatusCode } =

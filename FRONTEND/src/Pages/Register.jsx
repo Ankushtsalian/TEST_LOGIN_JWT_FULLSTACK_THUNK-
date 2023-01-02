@@ -1,8 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
-import Password from "../components/Password";
 import { useDispatch, useSelector } from "react-redux";
-
 import { useEffect } from "react";
+import Password from "../components/Password";
 import {
   handleFormInput,
   clearUserFormInput,
@@ -12,6 +11,7 @@ import {
   ClearAllProductState,
 } from "../Redux/index";
 import { getTokenFromLocalStorage } from "../utils/Local-Storage";
+
 const Register = () => {
   const {
     tokenLog,

@@ -1,8 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import {
-  deleteProduct,
-  getAllProducts,
-} from "../Redux/Product-store/Product-Slice";
+import { deleteProduct, getAllProducts } from "../Redux";
 
 const Product = () => {
   const { productList } = useSelector((state) => state.product);

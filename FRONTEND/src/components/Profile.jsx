@@ -9,14 +9,8 @@ import {
 import Loader from "./Loader";
 
 const Profile = () => {
-  const {
-    uploaded,
-    imageValue,
-    user,
-    isLoading,
-    errorMessage,
-    errorStatusCode,
-  } = useSelector((state) => state.profile);
+  const { uploaded, imageValue, user, isLoading, errorStatusCode } =
+    useSelector((state) => state.profile);
   const { tokenLog } = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
