@@ -3,7 +3,7 @@ const errorMessage = (error) => {
     (error.response && error.response.data && error.response.data.msg) ||
     error.message ||
     error.toString();
-  console.log(error.response);
+  console.log({ errorStatusCode: error.response.status, message });
 
   return { errorStatusCode: error.response.status, message };
 };

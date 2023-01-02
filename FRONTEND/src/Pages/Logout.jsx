@@ -7,6 +7,7 @@ import {
   ClearAllProfileState,
   clearUserToken,
 } from "../Redux/index";
+import { getTokenFromLocalStorage } from "../utils/Local-Storage";
 
 const Logout = () => {
   const { tokenLog } = useSelector((state) => state.user);
@@ -17,17 +18,18 @@ const Logout = () => {
     dispatch(clearUserToken());
     dispatch(ClearAllProfileState());
     dispatch(ClearAllProductState());
+    // if (!tokenLog) {
+    navigate("/login");
+    // }
   };
 
-  useEffect(() => {
-    if (!tokenLog) {
-      navigate("/login");
-    }
-    return () => {
-      console.log("LOGOUT");
-    };
-    // eslint-disable-next-line
-  }, [tokenLog]);
+  // useEffect(() => {
+
+  //   return () => {
+  //     console.log("LOGOUT");
+  //   };
+  //   // eslint-disable-next-line
+  // }, [tokenLog]);
 
   return (
     <button className="log-out" onClick={handleLogout}>
