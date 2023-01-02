@@ -19,7 +19,7 @@ const initialState = {
   imageValue: "",
   productList: [],
   errorMessage: "",
-  errorStatusCode: "",
+  errorStatusCode: 0,
 };
 
 export const getAllProducts = createAsyncThunk(
@@ -61,7 +61,7 @@ const productSlice = createSlice({
       state.tokenLog = "";
       state.productList = [];
       state.errorMessage = "";
-      state.errorStatusCode = "";
+      state.errorStatusCode = 0;
     },
     ClearAllProductInputState: (state) => {
       state.name = "";

@@ -15,7 +15,7 @@ const initialState = {
   registerPassword: "",
   registerResetPassword: "",
   errorMessage: "",
-  errorStatusCode: "",
+  errorStatusCode: 0,
 };
 
 export const loginUser = createAsyncThunk(
@@ -45,9 +45,10 @@ const userSlice = createSlice({
       state.registerResetPassword = "";
     },
     clearUserToken: (state) => {
+      removeTokenFromLocalStorage();
       state.tokenLog = "";
       state.errorMessage = "";
-      state.errorStatusCode = "";
+      state.errorStatusCode = 0;
     },
 
     handleFormInput: (state, { payload: { name, value } }) => {

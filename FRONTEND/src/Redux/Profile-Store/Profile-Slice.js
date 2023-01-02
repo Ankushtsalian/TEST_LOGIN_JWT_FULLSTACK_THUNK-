@@ -12,7 +12,7 @@ const initialState = {
   imageValue: getProfileFromLocalStorage(),
   user: "",
   errorMessage: "",
-  errorStatusCode: "",
+  errorStatusCode: 0,
 };
 
 export const profileImage = createAsyncThunk(
@@ -43,7 +43,7 @@ const profileSlice = createSlice({
       state.imageValue = "";
       state.user = "";
       state.errorMessage = "";
-      state.errorStatusCode = "";
+      state.errorStatusCode = 0;
     },
   },
   extraReducers: (builder) => {
