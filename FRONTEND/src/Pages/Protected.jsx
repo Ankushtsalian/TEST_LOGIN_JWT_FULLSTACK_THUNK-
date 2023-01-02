@@ -27,7 +27,7 @@ const Protected = ({ children }) => {
     return console.log("PROTECTED");
   }, [productError]);
 
-  if (userError || profileError || productError || !tokenLog) {
+  if (userError === 401 || profileError === 401 || productError === 401) {
     console.log(
       ".............................NAVIGATING. protected...................................."
     );

@@ -42,7 +42,7 @@ const Profile = () => {
       console.log("done fetchProfile2");
     };
   }, []);
-  if (!tokenLog || errorMessage || errorStatusCode) {
+  if (!tokenLog || errorMessage || errorStatusCode === 401) {
     console.log(
       ".............................NAVIGATING....PROFILE................................."
     );

@@ -66,7 +66,7 @@ const FileInput = () => {
     };
   }, []);
 
-  if (!tokenLog || errorMessage || errorStatusCode) {
+  if (!tokenLog || errorMessage || errorStatusCode === 401) {
     console.log(
       ".............................NAVIGATING....................................."
     );
