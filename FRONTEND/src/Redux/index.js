@@ -4,6 +4,7 @@ import {
   clearUserToken,
   registerUser,
   loginUser,
+  logoutUser,
 } from "./User-store/User-Slice";
 import {
   ClearAllProfileState,
@@ -38,4 +39,5 @@ export {
   profileImage,
   profileName,
   handleSidebarMenu,
+  logoutUser,
 };

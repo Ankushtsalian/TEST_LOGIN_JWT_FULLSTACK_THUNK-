@@ -2,6 +2,9 @@ import authHeader from "../../utils/Auth-Header";
 import customFetch from "../../utils/Axios";
 import errorMessage from "../../utils/Error-Message";
 import { addTokenToLocalStorage } from "../../utils/Local-Storage";
+import { ClearAllProductState } from "../Product-store/Product-Slice";
+import { ClearAllProfileState } from "../Profile-Store/Profile-Slice";
+import { clearUserToken } from "./User-Slice";
 // import customFetch, { checkForUnauthorizedResponse } from "../../utils/axios";
 
 export const loginUserThunk = async (url, formInput, thunkAPI) => {
@@ -40,5 +43,16 @@ export const registerUserThunk = async (url, formInput, thunkAPI) => {
     const { errorStatusCode, message } = errorMessage(error);
     alert(message);
     return thunkAPI.rejectWithValue({ errorStatusCode, message });
+  }
+};
+
+export const logoutUserThunk = async (message, thunkAPI) => {
+  try {
+    thunkAPI.dispatch(clearUserToken());
+    thunkAPI.dispatch(ClearAllProfileState());
+    thunkAPI.dispatch(ClearAllProductState());
+    return Promise.resolve();
+  } catch (error) {
+    return Promise.reject();
   }
 };

@@ -4,7 +4,11 @@ import {
   getTokenFromLocalStorage,
   removeTokenFromLocalStorage,
 } from "../../utils/Local-Storage";
-import { loginUserThunk, registerUserThunk } from "./User-Thunk";
+import {
+  loginUserThunk,
+  logoutUserThunk,
+  registerUserThunk,
+} from "./User-Thunk";
 
 const initialState = {
   tokenLog: getTokenFromLocalStorage(),
@@ -31,6 +35,10 @@ export const registerUser = createAsyncThunk(
     return registerUserThunk("/register", formInput, thunkAPI);
   }
 );
+
+export const logoutUser = createAsyncThunk("user/logoutUser", (_, thunkAPI) => {
+  return logoutUserThunk("/logoutUser", thunkAPI);
+});
 
 const userSlice = createSlice({
   name: "user",
@@ -101,6 +109,9 @@ const userSlice = createSlice({
         state.errorStatusCode = errorStatusCode;
       }
     );
+    builder.addCase(logoutUser.fulfilled, (state) => {
+      alert("loggedOut");
+    });
   },
 });
 

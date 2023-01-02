@@ -14,6 +14,7 @@ import {
   registerUser,
   ClearAllProfileState,
   ClearAllProductState,
+  logoutUser,
 } from "../Redux/index";
 const Register = () => {
   const {
@@ -25,17 +26,22 @@ const Register = () => {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
-
+  /**----------------------------------------------------------------------------
+   * CLEAR
+   * ------------------------------------------------------------------------------------------ */
   useEffect(() => {
     if (getTokenFromLocalStorage()) {
       removeTokenFromLocalStorage();
-      dispatch(clearUserToken());
-      dispatch(ClearAllProfileState());
-      dispatch(ClearAllProductState());
+      dispatch(logoutUser());
+      // dispatch(clearUserToken());
+      // dispatch(ClearAllProfileState());
+      // dispatch(ClearAllProductState());
     }
     return console.log("Register page entered");
   }, []);
-
+  /**----------------------------------------------------------------------------
+   * CLEAR
+   * ------------------------------------------------------------------------------------------ */
   const handleRegister = async () => {
     dispatch(
       registerUser({

@@ -5,7 +5,6 @@ import {
   addProfileToLocalStorage,
   getTokenFromLocalStorage,
 } from "../../utils/Local-Storage";
-// import customFetch, { checkForUnauthorizedResponse } from "../../utils/axios";
 const token = getTokenFromLocalStorage();
 export const profileImageThunk = async (url, formData, thunkAPI) => {
   console.log("thunkAPI", thunkAPI);
@@ -25,7 +24,7 @@ export const profileImageThunk = async (url, formData, thunkAPI) => {
     return src;
   } catch (error) {
     console.log(error);
-    const { errorStatusCode, message } = errorMessage(error);
+    const { errorStatusCode, message } = errorMessage(error, thunkAPI);
     return thunkAPI.rejectWithValue({ errorStatusCode, message });
   }
 };
@@ -39,7 +38,7 @@ export const profileNameThunk = async (url, thunkAPI) => {
 
     return products.data;
   } catch (error) {
-    const { errorStatusCode, message } = errorMessage(error);
+    const { errorStatusCode, message } = errorMessage(error, thunkAPI);
     return thunkAPI.rejectWithValue({ errorStatusCode, message });
   }
 };

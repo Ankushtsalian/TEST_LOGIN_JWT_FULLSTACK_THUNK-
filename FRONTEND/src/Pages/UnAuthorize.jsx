@@ -28,19 +28,24 @@ const UnAuthorize = () => {
     productError: productError,
   };
   const error = userError || profileError || productError;
+  /**----------------------------------------------------------------------------
+   * CLEAR
+   * ------------------------------------------------------------------------------------------ */
   useEffect(() => {
     removeTokenFromLocalStorage();
 
-    if (error) {
-      dispatch(clearUserToken());
-      dispatch(ClearAllProductState());
-      dispatch(ClearAllProfileState());
-    }
+    // if (error) {
+    //   dispatch(clearUserToken());
+    //   dispatch(ClearAllProductState());
+    //   dispatch(ClearAllProfileState());
+    // }
     navigate("/login");
     alert("UNAUTHORIZED USER, Please login unauth");
     console.log("UNAUTHORIZED USER, Please login OUT");
-  }, [error]);
-
+  }, []);
+  /**----------------------------------------------------------------------------
+   * CLEAR
+   * ------------------------------------------------------------------------------------------ */
   return <h1>---------------NOT AUTHORIZED---------------</h1>;
 };
 

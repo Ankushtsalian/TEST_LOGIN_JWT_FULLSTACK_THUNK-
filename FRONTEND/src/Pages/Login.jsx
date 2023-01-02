@@ -9,12 +9,13 @@ import {
 } from "../utils/Local-Storage";
 
 import {
-  ClearAllProfileState,
-  ClearAllProductState,
   loginUser,
   handleFormInput,
   clearUserFormInput,
+  logoutUser,
   clearUserToken,
+  ClearAllProfileState,
+  ClearAllProductState,
 } from "../Redux/index";
 
 const Login = () => {
@@ -26,12 +27,10 @@ const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (getTokenFromLocalStorage()) {
-      removeTokenFromLocalStorage();
-      dispatch(clearUserToken());
-      dispatch(ClearAllProfileState());
-      dispatch(ClearAllProductState());
-    }
+    dispatch(clearUserToken());
+    dispatch(ClearAllProfileState());
+    dispatch(ClearAllProductState());
+
     return console.log("Login page entered");
   }, []);
 
@@ -44,7 +43,7 @@ const Login = () => {
     if (tokenLog) {
       setTimeout(() => {
         navigate("/protected");
-      }, 2000);
+      }, 1200);
     }
     return () => {
       console.log("Token checked and navigate to protected");

@@ -7,17 +7,20 @@ import {
   ClearAllProductInputState,
   getAllProducts,
   handleFormInputProduct,
+  logoutUser,
   productFile,
   productFormData,
 } from "../Redux/index";
-import errorMessage from "../utils/Error-Message";
+
+import { Navigate, useNavigate } from "react-router-dom";
 
 const FileInput = () => {
   const { isLoading, name, price, image, public_id, errorMessage } =
     useSelector((state) => state.product);
+  const { tokenLog } = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const fileFormData = {
     name,
     price,
@@ -27,13 +30,6 @@ const FileInput = () => {
   const fetchProducts = async () => {
     dispatch(getAllProducts());
   };
-
-  useEffect(() => {
-    fetchProducts();
-    return () => {
-      console.log("done fetchProducts");
-    };
-  }, []);
 
   const handleFileInput = async (event) => {
     const imageFile = event.target.files[0];
@@ -54,6 +50,26 @@ const FileInput = () => {
     fetchProducts();
     dispatch(ClearAllProductInputState());
   };
+
+  console.log("tokenLogtokenLogtokenLogtokenLogtokenLog", tokenLog);
+  useEffect(() => {
+    if (tokenLog) {
+      fetchProducts();
+    }
+
+    return () => {
+      console.log("done fetchProducts2");
+    };
+  }, []);
+
+  if (!tokenLog) {
+    console.log(
+      ".............................NAVIGATING....................................."
+    );
+    dispatch(logoutUser());
+
+    return <Navigate to="/login" />;
+  }
 
   if (isLoading) return <Loader />;
 
