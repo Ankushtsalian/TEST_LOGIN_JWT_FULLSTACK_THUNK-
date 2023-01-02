@@ -4,7 +4,6 @@ import FormRow from "./FormRow";
 import Loader from "./Loader";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  ClearAllProductInputState,
   getAllProducts,
   handleFormInputProduct,
   productFile,
@@ -14,15 +13,8 @@ import {
 import { Navigate } from "react-router-dom";
 
 const FileInput = () => {
-  const {
-    isLoading,
-    name,
-    price,
-    image,
-    public_id,
-    errorMessage,
-    errorStatusCode,
-  } = useSelector((state) => state.product);
+  const { isLoading, name, price, image, public_id, errorStatusCode } =
+    useSelector((state) => state.product);
   const { tokenLog } = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
