@@ -2,10 +2,6 @@ import { Link, useNavigate } from "react-router-dom";
 import Password from "../components/Password";
 import { useDispatch, useSelector } from "react-redux";
 
-import {
-  getTokenFromLocalStorage,
-  removeTokenFromLocalStorage,
-} from "../utils/Local-Storage";
 import { useEffect } from "react";
 import {
   handleFormInput,
@@ -14,8 +10,8 @@ import {
   registerUser,
   ClearAllProfileState,
   ClearAllProductState,
-  logoutUser,
 } from "../Redux/index";
+import { getTokenFromLocalStorage } from "../utils/Local-Storage";
 const Register = () => {
   const {
     tokenLog,
@@ -26,22 +22,16 @@ const Register = () => {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
-  /**----------------------------------------------------------------------------
-   * CLEAR
-   * ------------------------------------------------------------------------------------------ */
+
   useEffect(() => {
     if (getTokenFromLocalStorage()) {
-      removeTokenFromLocalStorage();
-      dispatch(logoutUser());
-      // dispatch(clearUserToken());
-      // dispatch(ClearAllProfileState());
-      // dispatch(ClearAllProductState());
+      dispatch(clearUserToken());
+      dispatch(ClearAllProfileState());
+      dispatch(ClearAllProductState());
     }
     return console.log("Register page entered");
   }, []);
-  /**----------------------------------------------------------------------------
-   * CLEAR
-   * ------------------------------------------------------------------------------------------ */
+
   const handleRegister = async () => {
     dispatch(
       registerUser({

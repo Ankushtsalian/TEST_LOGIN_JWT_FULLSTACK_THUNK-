@@ -4,19 +4,14 @@ import { Link, useNavigate } from "react-router-dom";
 import Password from "../components/Password";
 
 import {
-  getTokenFromLocalStorage,
-  removeTokenFromLocalStorage,
-} from "../utils/Local-Storage";
-
-import {
   loginUser,
   handleFormInput,
   clearUserFormInput,
-  logoutUser,
   clearUserToken,
   ClearAllProfileState,
   ClearAllProductState,
 } from "../Redux/index";
+import { getTokenFromLocalStorage } from "../utils/Local-Storage";
 
 const Login = () => {
   const { tokenLog, loginUsername, loginPassword } = useSelector(
@@ -27,9 +22,11 @@ const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(clearUserToken());
-    dispatch(ClearAllProfileState());
-    dispatch(ClearAllProductState());
+    if (getTokenFromLocalStorage()) {
+      dispatch(clearUserToken());
+      dispatch(ClearAllProfileState());
+      dispatch(ClearAllProductState());
+    }
 
     return console.log("Login page entered");
   }, []);

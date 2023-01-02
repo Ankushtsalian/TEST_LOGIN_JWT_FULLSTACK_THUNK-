@@ -9,9 +9,14 @@ import {
 import Loader from "./Loader";
 
 const Profile = () => {
-  const { uploaded, imageValue, user, isLoading, errorMessage } = useSelector(
-    (state) => state.profile
-  );
+  const {
+    uploaded,
+    imageValue,
+    user,
+    isLoading,
+    errorMessage,
+    errorStatusCode,
+  } = useSelector((state) => state.profile);
   const { tokenLog } = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
@@ -37,7 +42,7 @@ const Profile = () => {
       console.log("done fetchProfile2");
     };
   }, []);
-  if (!tokenLog) {
+  if (!tokenLog || errorMessage || errorStatusCode) {
     console.log(
       ".............................NAVIGATING....PROFILE................................."
     );

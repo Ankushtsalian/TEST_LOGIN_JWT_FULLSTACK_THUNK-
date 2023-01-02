@@ -7,12 +7,11 @@ import {
   ClearAllProductInputState,
   getAllProducts,
   handleFormInputProduct,
-  logoutUser,
   productFile,
   productFormData,
 } from "../Redux/index";
 
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 const FileInput = () => {
   const { isLoading, name, price, image, public_id, errorMessage } =
@@ -20,7 +19,6 @@ const FileInput = () => {
   const { tokenLog } = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const fileFormData = {
     name,
     price,
@@ -51,7 +49,6 @@ const FileInput = () => {
     dispatch(ClearAllProductInputState());
   };
 
-  console.log("tokenLogtokenLogtokenLogtokenLogtokenLog", tokenLog);
   useEffect(() => {
     if (tokenLog) {
       fetchProducts();
@@ -62,11 +59,10 @@ const FileInput = () => {
     };
   }, []);
 
-  if (!tokenLog) {
+  if (!tokenLog || errorMessage || errorStatusCode) {
     console.log(
       ".............................NAVIGATING....................................."
     );
-    dispatch(logoutUser());
 
     return <Navigate to="/login" />;
   }

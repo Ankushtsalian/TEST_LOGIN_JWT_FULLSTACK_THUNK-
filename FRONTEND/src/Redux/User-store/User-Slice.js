@@ -110,7 +110,7 @@ const userSlice = createSlice({
       }
     );
     builder.addCase(logoutUser.fulfilled, (state) => {
-      alert("loggedOut");
+      alert("Logging Out.......");
     });
   },
 });

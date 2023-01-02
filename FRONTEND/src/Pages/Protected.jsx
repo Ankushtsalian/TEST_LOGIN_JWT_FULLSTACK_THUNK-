@@ -16,57 +16,18 @@ const Protected = ({ children }) => {
   );
   const dispatch = useDispatch();
 
-  console.log("userError", userError);
-  console.log("profileError", profileError);
-  console.log("productError", productError);
-  // if (
-  //   userError ||
-  //   profileError ||
-  //   productError ||
-  //   !getTokenFromLocalStorage()
-  // ) {
-  //
-  //    return <UnAuthorize />;
-  // }
-
-  // useEffect(() => {
-  //   if (
-  //     String(userError) === "401" ||
-  //     String(profileError) === "401" ||
-  //     String(productError) === "401" ||
-  //     !getTokenFromLocalStorage()
-  //   ) {
-  //     navigate("/login");
-  //     dispatch(logoutUser());
-  //   }
-
-  //   return () => {
-  //     console.log("UNAUTH", getTokenFromLocalStorage());
-  //   };
-  // }, []);
-
-  // if (
-  //   !userError &&
-  //   !profileError &&
-  //   !productError &&
-  //   getTokenFromLocalStorage()
-  // ) {
-  //   console.log("CHILDREN", getTokenFromLocalStorage());
-
-  // }
   useEffect(() => {
     if (
       userError ||
       profileError ||
-      productError
-      //  ||
-      // !getTokenFromLocalStorage()
+      productError ||
+      !getTokenFromLocalStorage()
     ) {
       dispatch(logoutUser());
+      alert("UNAUTHORIZED LOGIN, PLEASE LOGIN..........");
     }
     return console.log(
-      "=========================UNAUTHORIZED------=============---------",
-      getTokenFromLocalStorage()
+      "=========================UNAUTHORIZED------=============---------"
     );
   }, []);
   if (userError || profileError || productError || !tokenLog) {
