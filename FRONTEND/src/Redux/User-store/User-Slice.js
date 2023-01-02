@@ -72,7 +72,7 @@ const userSlice = createSlice({
 
     builder.addCase(loginUser.fulfilled, (state, { payload }) => {
       state.errorMessage = "";
-      state.errorStatusCode = "";
+      state.errorStatusCode = 0;
       state.isLoading = false;
       state.tokenLog = payload;
       addTokenToLocalStorage(state.tokenLog);

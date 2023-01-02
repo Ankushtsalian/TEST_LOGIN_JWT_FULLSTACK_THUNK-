@@ -17,19 +17,17 @@ const Protected = ({ children }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (
-      userError ||
-      profileError ||
-      productError ||
-      !getTokenFromLocalStorage()
-    ) {
+    if (userError === 401 || profileError === 401 || productError === 401) {
       dispatch(logoutUser());
-      alert("UNAUTHORIZED LOGIN, PLEASE LOGIN..........");
+      setTimeout(() => {
+        alert(
+          "=========================UNAUTHORIZED-LOGIN-----=============--------- PLEASE LOGIN AGAIN.........."
+        );
+      }, 2000);
     }
-    return console.log(
-      "=========================UNAUTHORIZED------=============---------"
-    );
-  }, []);
+    return console.log("PROTECTED");
+  }, [productError]);
+
   if (userError || profileError || productError || !tokenLog) {
     console.log(
       ".............................NAVIGATING. protected...................................."

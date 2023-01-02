@@ -11,7 +11,6 @@ export const getAllProductsThunk = async (url, thunkAPI) => {
       "/products",
       authHeader(token, true)
     );
-    alert("product fetched");
     return products.data;
   } catch (error) {
     const { errorStatusCode, message } = errorMessage(error, thunkAPI);
