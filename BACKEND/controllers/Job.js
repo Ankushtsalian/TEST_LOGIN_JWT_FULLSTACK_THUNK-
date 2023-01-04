@@ -2,12 +2,6 @@ const CustomAPIError = require("../errors/custom-error");
 const Job = require("../model/Job");
 
 const createJob = async (req, res) => {
-  // console.log({
-  //   ...req.body,
-  //   createdBy: req.user.userId,
-  //   createdByName: req.user.username,
-  // });
-
   const job = await Job.create({
     ...req.body,
     createdBy: req.user.userId,
