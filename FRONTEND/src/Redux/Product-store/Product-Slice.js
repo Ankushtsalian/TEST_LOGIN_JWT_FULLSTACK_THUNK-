@@ -1,5 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getTokenFromLocalStorage } from "../../utils/Local-Storage";
+import {
+  addProductsToLocalStorage,
+  getProductsFromLocalStorage,
+  getTokenFromLocalStorage,
+} from "../../utils/Local-Storage";
 import {
   deleteProductThunk,
   getAllProductsThunk,
@@ -21,6 +25,7 @@ const initialState = {
   errorMessage: "",
   errorStatusCode: 0,
   search: "",
+  newProductList: [],
 };
 
 export const getAllProducts = createAsyncThunk(
@@ -75,6 +80,9 @@ const productSlice = createSlice({
     handleFormInputProduct: (state, { payload: { name, value } }) => {
       state[name] = value;
     },
+    filteredProduct: (state, { payload }) => {
+      state.newProductList = payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getAllProducts.pending, (state) => {
@@ -85,6 +93,7 @@ const productSlice = createSlice({
       state.tokenLog = getTokenFromLocalStorage();
       state.isLoading = false;
       state.productList = payload.products;
+      addProductsToLocalStorage(payload.products);
     });
 
     builder.addCase(
@@ -159,5 +168,6 @@ export const {
   ClearAllProductInputState,
   ClearAllProductState,
   handleFormInputProduct,
+  filteredProduct,
 } = productSlice.actions;
 export default productSlice.reducer;

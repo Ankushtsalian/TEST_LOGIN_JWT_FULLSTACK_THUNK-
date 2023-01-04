@@ -10,10 +10,18 @@ import {
   productFile,
   productFormData,
 } from "../Redux/index";
+import { addProductsToLocalStorage } from "../utils/Local-Storage";
 
 const FileInput = () => {
-  const { isLoading, name, price, image, public_id, errorStatusCode } =
-    useSelector((state) => state.product);
+  const {
+    productList,
+    isLoading,
+    name,
+    price,
+    image,
+    public_id,
+    errorStatusCode,
+  } = useSelector((state) => state.product);
   const { tokenLog } = useSelector((state) => state.user);
 
   const dispatch = useDispatch();

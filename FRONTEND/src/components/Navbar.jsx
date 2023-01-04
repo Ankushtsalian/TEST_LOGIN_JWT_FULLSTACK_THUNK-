@@ -7,17 +7,27 @@ import { useDispatch, useSelector } from "react-redux";
 import { FaSearch } from "react-icons/fa";
 import { handleFormInputProduct } from "../Redux";
 import { useRef } from "react";
+import { filteredProduct } from "../Redux/Product-store/Product-Slice";
 
 const Navbar = () => {
-  const { isClosed, search } = useSelector((state) => state.product);
+  const { isClosed, search, productList, newProductList } = useSelector(
+    (state) => state.product
+  );
   const dispatch = useDispatch();
   const currentValue = useRef("");
-  console.log(search);
+
   const handleInput = (e) => {
     const { name, value } = currentValue.current;
     dispatch(handleFormInputProduct({ name, value }));
   };
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const filteredProducts = productList.filter((product) =>
+      product.name.includes(search)
+    );
+    dispatch(filteredProduct(filteredProducts));
+  };
   return (
     <nav className="navbar">
       <Hamburger isClosed={isClosed} />
@@ -33,7 +43,7 @@ const Navbar = () => {
           onChange={handleInput}
           maxLength="25"
         />
-        <button>
+        <button onClick={handleSearch}>
           <FaSearch />
         </button>
         {/* <span className="material-symbols-outlined">account_circle</span> */}

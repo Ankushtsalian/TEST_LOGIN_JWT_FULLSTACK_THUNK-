@@ -4,6 +4,9 @@ export const addTokenToLocalStorage = (Token) => {
 export const addProfileToLocalStorage = (src) => {
   localStorage.setItem("profile", JSON.stringify(src));
 };
+export const addProductsToLocalStorage = (product) => {
+  localStorage.setItem("product", JSON.stringify(product));
+};
 
 export const removeTokenFromLocalStorage = () => {
   localStorage?.removeItem("Token");
@@ -20,4 +23,8 @@ export const getProfileFromLocalStorage = () => {
 export const getTokenFromLocalStorage = () => {
   const Token = JSON.parse(localStorage?.getItem("Token")) || "";
   return Token;
+};
+export const getProductsFromLocalStorage = () => {
+  const Products = JSON.parse(localStorage?.getItem("product")) || [];
+  return Products;
 };

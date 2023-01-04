@@ -1,25 +1,19 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteProduct, getAllProducts } from "../Redux";
-// let newProductList = [];
+import { filteredProduct } from "../Redux/Product-store/Product-Slice";
+import { getProductsFromLocalStorage } from "../utils/Local-Storage";
 const Product = () => {
-  let { productList, search } = useSelector((state) => state.product);
+  let { productList, search, newProductList } = useSelector(
+    (state) => state.product
+  );
   const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   // setTimeout(() => {
-  //   // productList = [...productList];
-  //   productList = productList.filter((product) =>
-  //     product.name.includes(search)
-  //   );
-  //   // }, 2000);
-  //   newProductList = [...productList];
-  //   console.log("newProductList", newProductList);
-  //   console.log("newProductList", productList);
-  //   return () => {
-  //     console.log("Product list");
-  //   };
-  // }, [search]);
+  useEffect(() => {
+    dispatch(filteredProduct(getProductsFromLocalStorage()));
+    return () => {
+      console.log("Product list");
+    };
+  }, []);
 
   const handleDelete = async (e, id, publicId) => {
     e.preventDefault();
@@ -30,7 +24,7 @@ const Product = () => {
 
   return (
     <>
-      {productList.map((product) => {
+      {newProductList.map((product) => {
         const { name, price, image, _id, public_id } = product;
         return (
           <div key={_id} className="product-container">
