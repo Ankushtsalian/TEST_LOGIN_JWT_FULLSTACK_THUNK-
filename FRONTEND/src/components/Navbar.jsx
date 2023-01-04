@@ -6,14 +6,15 @@ import Profile from "./Profile";
 import { useDispatch, useSelector } from "react-redux";
 import { FaSearch } from "react-icons/fa";
 import { handleFormInputProduct } from "../Redux";
+import { useRef } from "react";
 
 const Navbar = () => {
   const { isClosed, search } = useSelector((state) => state.product);
   const dispatch = useDispatch();
-
+  const currentValue = useRef("");
   console.log(search);
   const handleInput = (e) => {
-    const { name, value } = e.target;
+    const { name, value } = currentValue.current;
     dispatch(handleFormInputProduct({ name, value }));
   };
 
@@ -24,12 +25,13 @@ const Navbar = () => {
       <div className="search-bar">
         <input
           autoComplete="off"
-          // ref={currentValue}
+          ref={currentValue}
           className="input"
           type="text"
           value={search}
           name="search"
           onChange={handleInput}
+          maxLength="25"
         />
         <button>
           <FaSearch />

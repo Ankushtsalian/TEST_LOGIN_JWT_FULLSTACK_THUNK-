@@ -1,9 +1,25 @@
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteProduct, getAllProducts } from "../Redux";
-
+// let newProductList = [];
 const Product = () => {
-  const { productList } = useSelector((state) => state.product);
+  let { productList, search } = useSelector((state) => state.product);
   const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   // setTimeout(() => {
+  //   // productList = [...productList];
+  //   productList = productList.filter((product) =>
+  //     product.name.includes(search)
+  //   );
+  //   // }, 2000);
+  //   newProductList = [...productList];
+  //   console.log("newProductList", newProductList);
+  //   console.log("newProductList", productList);
+  //   return () => {
+  //     console.log("Product list");
+  //   };
+  // }, [search]);
 
   const handleDelete = async (e, id, publicId) => {
     e.preventDefault();
@@ -11,6 +27,7 @@ const Product = () => {
     dispatch(deleteProduct({ id, publicId }));
     dispatch(getAllProducts());
   };
+
   return (
     <>
       {productList.map((product) => {
