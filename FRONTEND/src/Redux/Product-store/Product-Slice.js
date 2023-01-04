@@ -20,6 +20,7 @@ const initialState = {
   productList: [],
   errorMessage: "",
   errorStatusCode: 0,
+  search: "",
 };
 
 export const getAllProducts = createAsyncThunk(

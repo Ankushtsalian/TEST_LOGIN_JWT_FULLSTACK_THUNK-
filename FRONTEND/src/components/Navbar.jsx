@@ -3,11 +3,19 @@ import "../styles/navbar.css";
 import Hamburger from "./Hamburger";
 import chevron from "../Assets/chevron.svg";
 import Profile from "./Profile";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FaSearch } from "react-icons/fa";
+import { handleFormInputProduct } from "../Redux";
 
 const Navbar = () => {
-  const { isClosed } = useSelector((state) => state.product);
+  const { isClosed, search } = useSelector((state) => state.product);
+  const dispatch = useDispatch();
+
+  console.log(search);
+  const handleInput = (e) => {
+    const { name, value } = e.target;
+    dispatch(handleFormInputProduct({ name, value }));
+  };
 
   return (
     <nav className="navbar">
@@ -19,10 +27,9 @@ const Navbar = () => {
           // ref={currentValue}
           className="input"
           type="text"
-          // value={loginUsername}
-          required
-          name="loginUsername"
-          // onChange={handleInput}
+          value={search}
+          name="search"
+          onChange={handleInput}
         />
         <button>
           <FaSearch />
