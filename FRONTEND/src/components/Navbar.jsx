@@ -4,6 +4,7 @@ import Hamburger from "./Hamburger";
 import chevron from "../Assets/chevron.svg";
 import Profile from "./Profile";
 import { useSelector } from "react-redux";
+import { FaSearch } from "react-icons/fa";
 
 const Navbar = () => {
   const { isClosed } = useSelector((state) => state.product);
@@ -13,7 +14,6 @@ const Navbar = () => {
       <Hamburger isClosed={isClosed} />
       <button className="button">Home</button>
       <div className="search-bar">
-        <label>Search</label>
         <input
           autoComplete="off"
           // ref={currentValue}
@@ -24,6 +24,9 @@ const Navbar = () => {
           name="loginUsername"
           // onChange={handleInput}
         />
+        <button>
+          <FaSearch />
+        </button>
         {/* <span className="material-symbols-outlined">account_circle</span> */}
       </div>
       <div className="dropdowns">

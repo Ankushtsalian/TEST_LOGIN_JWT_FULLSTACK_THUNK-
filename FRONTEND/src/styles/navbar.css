@@ -290,8 +290,16 @@ body.open .burger {
     margin-top: 2px;
     
 }
+.search-bar button{ 
+    height:43px;width:65px;
+color:#000;
+font-size: 20px;
+background-color: yellow;
+}
 .search-bar input{
-    max-height: 40px !important;
+    max-height: 45px !important;
     min-width:350px !important;
     margin-left: 10px;
+    font-size: 16px;
+    padding: 10px;
 }
