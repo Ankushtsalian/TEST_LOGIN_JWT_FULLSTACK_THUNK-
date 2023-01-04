@@ -12,6 +12,20 @@ const Navbar = () => {
     <nav className="navbar">
       <Hamburger isClosed={isClosed} />
       <button className="button">Home</button>
+      <div className="search-bar">
+        <label>Search</label>
+        <input
+          autoComplete="off"
+          // ref={currentValue}
+          className="input"
+          type="text"
+          // value={loginUsername}
+          required
+          name="loginUsername"
+          // onChange={handleInput}
+        />
+        {/* <span className="material-symbols-outlined">account_circle</span> */}
+      </div>
       <div className="dropdowns">
         <div className="dropdown">
           <button className="button">
@@ -47,6 +61,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+
       <Profile />
       <Logout />
     </nav>
