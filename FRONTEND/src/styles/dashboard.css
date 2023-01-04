@@ -136,13 +136,15 @@ pre {
 .product-container button {
    
     background-image: url("../Assets/fifa.jpg");
+    animation: rotate 5.5s infinite alternate linear;
    
     width: 65%;
     color: #fff;
 }
 
 .product-container:hover button{
- background-image: url("../Assets/background.svg");
+   animation: rotate 5.5s infinite alternate linear;
+   background-image: url("../Assets/background.svg");
 }
 .product-container:hover {
     box-shadow: 0 0 5px 2px #fff;

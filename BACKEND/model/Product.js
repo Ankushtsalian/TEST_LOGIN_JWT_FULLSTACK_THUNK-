@@ -33,7 +33,7 @@ const ProductSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-ProductSchema.methods.createJWT = function (token) {
+ProductSchema.methods.verifyJWT = function (token) {
   let tokenValue = token.split(" ")[1];
   const decoded = jwt.verify(tokenValue, process.env.JWT_SECRET);
 

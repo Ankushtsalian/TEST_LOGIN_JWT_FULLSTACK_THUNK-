@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Password from "../components/Password";
@@ -20,13 +20,14 @@ const Login = () => {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
-
+  const currentValue = useRef();
   useEffect(() => {
     if (getTokenFromLocalStorage()) {
       dispatch(clearUserToken());
       dispatch(ClearAllProfileState());
       dispatch(ClearAllProductState());
     }
+    console.log(currentValue.current.focus());
 
     return console.log("Login page entered");
   }, []);
@@ -42,6 +43,7 @@ const Login = () => {
         navigate("/protected");
       }, 1200);
     }
+    currentValue.current.focus();
     return () => {
       console.log("Token checked and navigate to protected");
     }; // eslint-disable-next-line
@@ -63,6 +65,7 @@ const Login = () => {
             <div className="textbox">
               <input
                 // autoComplete="off"
+                ref={currentValue}
                 className="input"
                 type="text"
                 value={loginUsername}

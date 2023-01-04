@@ -7,7 +7,6 @@ import {
 } from "../../utils/Local-Storage";
 const token = getTokenFromLocalStorage();
 export const profileImageThunk = async (url, formData, thunkAPI) => {
-  console.log("thunkAPI", thunkAPI);
   try {
     const {
       data: {
@@ -32,7 +31,7 @@ export const profileImageThunk = async (url, formData, thunkAPI) => {
 export const profileNameThunk = async (url, thunkAPI) => {
   try {
     const products = await customFetch.get(
-      "/products",
+      "/products/profile",
       authHeader(token, true)
     );
 

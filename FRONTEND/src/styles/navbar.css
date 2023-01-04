@@ -40,13 +40,13 @@ button {
     align-items: stretch;
     height: 72px;
     /* background: transparent; */
-    /* opacity: 0.85; */
+    opacity: 0.85;
     color: #fff !important;
     border-bottom: 1px solid #000;
     --tw-bg-opacity: 1;
     background-color: rgb(30 41 59/var(--tw-bg-opacity));
     /* background-image: url("../Assets/background.svg"); */
-    background-image: url("../Assets/fifac.jpg");
+    /* background-image: url("../Assets/fifac.jpg"); */
     animation: rotate 55s infinite alternate linear;
 
 }
@@ -74,12 +74,12 @@ button {
     border-left: 7px solid transparent;
     content: '';
 } */
-.profile-container:hover .profile-dropdown-container {
+/* .profile-container:hover .profile-dropdown-container {
     visibility: visible;
     transition: all 0.85s;
 
 
-}
+} */
 
 .profile-dropdown-container {
     position: absolute;
@@ -93,7 +93,7 @@ button {
     transition: all 0.85s;
 
 
-    visibility: hidden;
+    /* visibility: hidden; */
     display: flex;
     justify-content: center;
     align-items: center;

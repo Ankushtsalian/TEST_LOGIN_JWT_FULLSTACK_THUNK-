@@ -38,4 +38,11 @@ registerSchema.methods.comparePassword = async function (candidatePassword) {
   return isMatch;
 };
 
+registerSchema.methods.verifyJWT = function (token) {
+  let tokenValue = token.split(" ")[1];
+  const decoded = jwt.verify(tokenValue, process.env.JWT_SECRET);
+  if (decoded.username === String(this.username))
+    return { msg: { decoded, token } };
+  throw new CustomAPIError("Unathorized User", 404);
+};
 module.exports = mongoose.model("Register", registerSchema);
