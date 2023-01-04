@@ -135,9 +135,9 @@ body.open .burger {
 }
 
 @media (width >=500px) {
-    .button {
+    /* .button {
         padding: 0 10px 0 24px;
-    }
+    } */
 
     .button>img {
         display: block;
@@ -177,7 +177,7 @@ body.open .burger {
     .dropdowns {
         position: static;
         flex-direction: row;
-        justify-content: flex-start;
+        /* justify-content: flex-start; */
         background: transparent;
         opacity: 1;
         visibility: visible;
