@@ -291,10 +291,12 @@ body.open .burger {
     
 }
 .search-bar button{ 
-    height:43px;width:65px;
+    height:45px;width:65px;
 color:#000;
 font-size: 20px;
 background-color: yellow;
+border-top-right-radius: 10px;
+border-bottom-right-radius: 10px;
 }
 .search-bar input{
     max-height: 45px !important;
@@ -302,4 +304,5 @@ background-color: yellow;
     margin-left: 10px;
     font-size: 16px;
     padding: 10px;
+    border: 1.5px solid yellow !important;
 }
