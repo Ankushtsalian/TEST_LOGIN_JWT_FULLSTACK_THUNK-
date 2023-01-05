@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import {
   addProductsToLocalStorage,
-  getProductsFromLocalStorage,
   getTokenFromLocalStorage,
   removeProductFromLocalStorage,
 } from "../../utils/Local-Storage";

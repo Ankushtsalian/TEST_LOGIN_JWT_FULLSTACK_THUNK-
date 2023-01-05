@@ -8,6 +8,7 @@ import { FaSearch } from "react-icons/fa";
 import { handleFormInputProduct } from "../Redux";
 import { useRef } from "react";
 import { filteredProduct } from "../Redux/Product-store/Product-Slice";
+import SearchDropdown from "./SearchDropdown";
 
 const Navbar = () => {
   const { isClosed, search, productList, newProductList } = useSelector(
@@ -46,7 +47,7 @@ const Navbar = () => {
         <button onClick={handleSearch}>
           <FaSearch />
         </button>
-        {/* <span className="material-symbols-outlined">account_circle</span> */}
+        {search && <SearchDropdown />}
       </div>
       <div className="dropdowns">
         <div className="dropdown">

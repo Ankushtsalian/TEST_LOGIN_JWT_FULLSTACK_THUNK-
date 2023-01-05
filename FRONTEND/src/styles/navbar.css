@@ -288,7 +288,7 @@ body.open .burger {
     justify-content: center;
     align-items: center;
     margin-top: 2px;
-    
+    position: relative;
 }
 .search-bar button{ 
     height:45px;width:65px;
@@ -307,4 +307,24 @@ border-bottom-right-radius: 10px;
     border: 1.5px solid yellow !important;
 border-bottom-left-radius: 10px;
 
+}
+
+.search-dropdown-container{
+position: absolute;
+/* bottom: -32px; */
+top:56px;
+left:  17px;
+border: 1.5px solid yellow !important;
+min-height: 45px !important;
+min-width:343px !important;
+}
+.search-dropdown{
+    padding: 10px;
+border-bottom: 1px solid yellow !important;
+
+}
+
+.search-dropdown-info{
+    display: flex;
+    justify-content: space-between;
 }
