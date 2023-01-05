@@ -1,10 +1,9 @@
 import { useSelector } from "react-redux";
-let filteredProducts;
+let filteredProducts = [];
 const SearchDropdown = () => {
   let { productList, search } = useSelector((state) => state.product);
-
   filteredProducts = productList.filter((product) =>
-    product.name.includes(search)
+    product.name.includes(search.trim())
   );
 
   return (
@@ -15,18 +14,14 @@ const SearchDropdown = () => {
           if (name) {
             return (
               <div className="search-dropdown" key={_id}>
-                <div className="search-dropdown-info">
-                  <p> {name}</p>
-                  <p>{price} $</p>
-                </div>
+                <p> {name}</p>
+                <p>{price} $</p>
               </div>
             );
           }
         })
       ) : (
-        <div className="search-dropdown">
-          <div className="search-dropdown-info">No Products Found </div>
-        </div>
+        <div className="search-dropdown">No Products Found</div>
       )}
     </div>
   );

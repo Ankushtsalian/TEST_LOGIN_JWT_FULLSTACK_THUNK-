@@ -311,7 +311,6 @@ border-bottom-left-radius: 10px;
 
 .search-dropdown-container{
 position: absolute;
-/* bottom: -32px; */
 top:56px;
 left:  17px;
 border: 1.5px solid yellow !important;
@@ -321,10 +320,10 @@ min-width:343px !important;
 .search-dropdown{
     padding: 10px;
 border-bottom: 1px solid yellow !important;
-
+    display: flex;
+    justify-content: space-between;
 }
 
 .search-dropdown-info{
-    display: flex;
-    justify-content: space-between;
+
 }
