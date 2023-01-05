@@ -15,6 +15,9 @@ export const removeTokenFromLocalStorage = () => {
 export const removeProfileFromLocalStorage = () => {
   localStorage?.removeItem("profile");
 };
+export const removeProductFromLocalStorage = () => {
+  localStorage?.removeItem("product");
+};
 export const getProfileFromLocalStorage = () => {
   const Token = JSON.parse(localStorage?.getItem("profile")) || "";
   return Token;

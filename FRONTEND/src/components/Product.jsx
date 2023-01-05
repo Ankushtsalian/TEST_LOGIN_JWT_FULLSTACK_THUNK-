@@ -1,7 +1,10 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteProduct, getAllProducts } from "../Redux";
-import { filteredProduct } from "../Redux/Product-store/Product-Slice";
+import {
+  clearProduct,
+  filteredProduct,
+} from "../Redux/Product-store/Product-Slice";
 import { getProductsFromLocalStorage } from "../utils/Local-Storage";
 const Product = () => {
   let { productList, search, newProductList } = useSelector(

@@ -11,6 +11,7 @@ import {
   ClearAllProfileState,
   ClearAllProductState,
 } from "../Redux/index";
+import { clearProduct } from "../Redux/Product-store/Product-Slice";
 import { getTokenFromLocalStorage } from "../utils/Local-Storage";
 
 const Login = () => {
@@ -26,6 +27,7 @@ const Login = () => {
       dispatch(clearUserToken());
       dispatch(ClearAllProfileState());
       dispatch(ClearAllProductState());
+      dispatch(clearProduct());
     }
     console.log(currentValue.current.focus());
 

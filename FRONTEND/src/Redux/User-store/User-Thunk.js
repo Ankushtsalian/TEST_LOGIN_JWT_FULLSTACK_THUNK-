@@ -2,7 +2,10 @@ import authHeader from "../../utils/Auth-Header";
 import customFetch from "../../utils/Axios";
 import errorMessage from "../../utils/Error-Message";
 import { addTokenToLocalStorage } from "../../utils/Local-Storage";
-import { ClearAllProductState } from "../Product-store/Product-Slice";
+import {
+  ClearAllProductState,
+  clearProduct,
+} from "../Product-store/Product-Slice";
 import { ClearAllProfileState } from "../Profile-Store/Profile-Slice";
 import { clearUserToken } from "./User-Slice";
 // import customFetch, { checkForUnauthorizedResponse } from "../../utils/axios";
@@ -51,6 +54,7 @@ export const logoutUserThunk = async (message, thunkAPI) => {
     thunkAPI.dispatch(clearUserToken());
     thunkAPI.dispatch(ClearAllProfileState());
     thunkAPI.dispatch(ClearAllProductState());
+    thunkAPI.dispatch(clearProduct());
     return Promise.resolve();
   } catch (error) {
     return Promise.reject();

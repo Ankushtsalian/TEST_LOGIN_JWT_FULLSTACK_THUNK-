@@ -3,6 +3,7 @@ import {
   addProductsToLocalStorage,
   getProductsFromLocalStorage,
   getTokenFromLocalStorage,
+  removeProductFromLocalStorage,
 } from "../../utils/Local-Storage";
 import {
   deleteProductThunk,
@@ -76,6 +77,9 @@ const productSlice = createSlice({
       state.src = "";
       state.public_id = "";
       state.imageValue = "";
+    },
+    clearProduct: (state) => {
+      removeProductFromLocalStorage();
     },
     handleFormInputProduct: (state, { payload: { name, value } }) => {
       state[name] = value;
@@ -169,5 +173,6 @@ export const {
   ClearAllProductState,
   handleFormInputProduct,
   filteredProduct,
+  clearProduct,
 } = productSlice.actions;
 export default productSlice.reducer;
