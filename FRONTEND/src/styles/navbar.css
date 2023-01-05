@@ -46,8 +46,8 @@ button {
     --tw-bg-opacity: 1;
     background-color: rgb(30 41 59/var(--tw-bg-opacity));
     /* background-image: url("../Assets/background.svg"); */
-    /* background-image: url("../Assets/fifac.jpg"); */
-    animation: rotate 55s infinite alternate linear;
+    background-image: url("../Assets/fifac.jpg");
+    /* animation: rotate 55s infinite alternate linear; */
 
 }
 
@@ -291,7 +291,7 @@ body.open .burger {
     position: relative;
 }
 .search-bar button{ 
-    height:45px;width:65px;
+    height:45px;width:55px;
 color:#000;
 font-size: 20px;
 background-color: yellow;
@@ -306,7 +306,7 @@ border-bottom-right-radius: 10px;
     padding: 10px;
     border: 1.5px solid yellow !important;
 border: 1.5px solid #fff !important;
-
+background-color: #000;
 border-bottom-left-radius: 10px;
 
 }
@@ -320,6 +320,7 @@ min-height: 45px !important;
 min-width:343px !important;
         background-image: url("../Assets/background.svg");
     transition: all 0.85s;
+    animation: rotate 10s infinite alternate cubic-bezier(0.55, 0.055, 0.675, 0.19);
 
 
 }
