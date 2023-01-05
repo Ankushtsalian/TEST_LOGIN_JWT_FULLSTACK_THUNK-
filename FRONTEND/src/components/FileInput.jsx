@@ -11,6 +11,7 @@ import {
   productFormData,
 } from "../Redux/index";
 import { addProductsToLocalStorage } from "../utils/Local-Storage";
+import { clearProduct } from "../Redux/Product-store/Product-Slice";
 
 const FileInput = () => {
   const {
@@ -50,6 +51,7 @@ const FileInput = () => {
   const handleForm = async (event) => {
     event.preventDefault();
     dispatch(productFormData(fileFormData));
+    dispatch(clearProduct());
 
     fetchProducts();
     // dispatch(ClearAllProductInputState());

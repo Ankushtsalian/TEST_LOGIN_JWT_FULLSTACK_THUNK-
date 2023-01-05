@@ -69,6 +69,8 @@ const productSlice = createSlice({
       state.productList = [];
       state.errorMessage = "";
       state.errorStatusCode = 0;
+      state.name = "";
+      state.price = "";
     },
     ClearAllProductInputState: (state) => {
       state.name = "";
@@ -80,6 +82,8 @@ const productSlice = createSlice({
     },
     clearProduct: (state) => {
       removeProductFromLocalStorage();
+      state.newProductList = [];
+      state.search = "";
     },
     handleFormInputProduct: (state, { payload: { name, value } }) => {
       state[name] = value;
