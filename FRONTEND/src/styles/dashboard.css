@@ -149,12 +149,12 @@ pre {
 .product-container:hover {
     box-shadow: 0 0 5px 2px #fff;
   
-    animation: rotate 5.5s infinite alternate linear;
-    /* background-image: url("../Assets/fifa.jpg"); */
-
-
+    
+    
 }
 .product-container {
+    /* animation: rotate 5.5s infinite alternate linear; */
+    /* background-image: url("../Assets/fifa.jpg"); */
     display: flex;
     flex-direction: column;
     justify-content: center;

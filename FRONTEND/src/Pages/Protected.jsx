@@ -1,7 +1,9 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import { logoutUser } from "../Redux";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Mail from "../components/Mail";
 
 const Protected = ({ children }) => {
   const { errorStatusCode: userError, tokenLog } = useSelector(
@@ -35,7 +37,13 @@ const Protected = ({ children }) => {
     return <Navigate to="/login" />;
   }
 
-  return <div className="container">{children}</div>;
+  return (
+    <>
+      {/* <div className="container"> */}
+      <Outlet />
+      {/* </div> */}
+    </>
+  );
 };
 
 export default Protected;

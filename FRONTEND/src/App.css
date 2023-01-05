@@ -42,16 +42,16 @@ select:-webkit-autofill:focus {
   height: 100%;
     --tw-bg-opacity: 1;
     background-color: rgb(30 41 59/var(--tw-bg-opacity));
-    background: url("./Assets/fifac.jpg");
+    /* background: url("./Assets/fifac.jpg"); */
     /* animation: rotate 10s infinite alternate cubic-bezier(0.55, 0.055, 0.675, 0.19); */
 
 }
 
-@keyframes rotate {
+/* @keyframes rotate {
   50% {
     background-position: 100% 55%;
   }
-}
+} */
 main {
  height: 100vh; 
  display: grid;

@@ -42,7 +42,7 @@ const Login = () => {
   useEffect(() => {
     if (tokenLog) {
       setTimeout(() => {
-        navigate("/protected");
+        navigate("/protected/home");
       }, 1200);
     }
     currentValue.current.focus();
