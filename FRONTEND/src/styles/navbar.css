@@ -305,6 +305,8 @@ border-bottom-right-radius: 10px;
     font-size: 16px;
     padding: 10px;
     border: 1.5px solid yellow !important;
+border: 1.5px solid #fff !important;
+
 border-bottom-left-radius: 10px;
 
 }
@@ -313,17 +315,20 @@ border-bottom-left-radius: 10px;
 position: absolute;
 top:56px;
 left:  17px;
-border: 1.5px solid yellow !important;
+border: 1.5px solid #fff !important;
 min-height: 45px !important;
 min-width:343px !important;
         background-image: url("../Assets/background.svg");
+    transition: all 0.85s;
 
 
 }
 .search-dropdown{
     padding: 10px;
-border-bottom: 1px solid yellow !important;
+border-bottom: 1px solid #fff !important;
     display: flex;
     justify-content: space-between;
+    transition: all 0.85s;
+
 }
 
