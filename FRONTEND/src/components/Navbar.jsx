@@ -7,7 +7,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { FaSearch } from "react-icons/fa";
 import { handleFormInputProduct } from "../Redux";
 import { useRef } from "react";
-import { filteredProduct } from "../Redux/Product-store/Product-Slice";
+import {
+  ClearAllProductSearchInput,
+  filteredProduct,
+} from "../Redux/Product-store/Product-Slice";
 import SearchDropdown from "./SearchDropdown";
 
 const Navbar = () => {
@@ -25,9 +28,10 @@ const Navbar = () => {
   const handleSearch = (e) => {
     e.preventDefault();
     const filteredProducts = productList.filter((product) =>
-      product.name.includes(search)
+      product.name.includes(search.trim())
     );
     dispatch(filteredProduct(filteredProducts));
+    dispatch(ClearAllProductSearchInput());
   };
   return (
     <nav className="navbar">

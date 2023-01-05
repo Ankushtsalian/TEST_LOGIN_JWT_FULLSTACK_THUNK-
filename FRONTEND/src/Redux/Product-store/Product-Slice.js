@@ -84,6 +84,9 @@ const productSlice = createSlice({
       state.newProductList = [];
       state.search = "";
     },
+    ClearAllProductSearchInput: (state) => {
+      state.search = "";
+    },
     handleFormInputProduct: (state, { payload: { name, value } }) => {
       state[name] = value;
     },
@@ -177,5 +180,6 @@ export const {
   handleFormInputProduct,
   filteredProduct,
   clearProduct,
+  ClearAllProductSearchInput,
 } = productSlice.actions;
 export default productSlice.reducer;

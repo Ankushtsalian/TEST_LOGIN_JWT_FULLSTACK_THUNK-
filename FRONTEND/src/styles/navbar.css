@@ -316,6 +316,9 @@ left:  17px;
 border: 1.5px solid yellow !important;
 min-height: 45px !important;
 min-width:343px !important;
+        background-image: url("../Assets/background.svg");
+
+
 }
 .search-dropdown{
     padding: 10px;
@@ -324,6 +327,3 @@ border-bottom: 1px solid yellow !important;
     justify-content: space-between;
 }
 
-.search-dropdown-info{
-
-}
