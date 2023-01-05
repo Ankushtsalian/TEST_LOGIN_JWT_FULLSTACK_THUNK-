@@ -9,18 +9,25 @@ const SearchDropdown = () => {
 
   return (
     <div className="search-dropdown-container">
-      {filteredProducts?.map((product, i) => {
-        const { name, price, image, _id, public_id } = product;
-
-        return (
-          <div className="search-dropdown" key={_id}>
-            <div className="search-dropdown-info">
-              <p> {name}</p>
-              <p>{price} $</p>
-            </div>
-          </div>
-        );
-      })}
+      {filteredProducts.length ? (
+        filteredProducts.map((product, i) => {
+          const { name, price, image, _id, public_id } = product;
+          if (name) {
+            return (
+              <div className="search-dropdown" key={_id}>
+                <div className="search-dropdown-info">
+                  <p> {name}</p>
+                  <p>{price} $</p>
+                </div>
+              </div>
+            );
+          }
+        })
+      ) : (
+        <div className="search-dropdown">
+          <div className="search-dropdown-info">No Products Found </div>
+        </div>
+      )}
     </div>
   );
 };
