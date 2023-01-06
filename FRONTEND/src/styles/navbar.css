@@ -333,3 +333,8 @@ border-bottom: 1px solid #fff !important;
 
 }
 
+.mail-container{
+    position: absolute;
+    color:#fff;
+    top: 73px;
+}

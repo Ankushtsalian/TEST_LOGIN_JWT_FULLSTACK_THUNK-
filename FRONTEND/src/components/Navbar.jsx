@@ -36,10 +36,11 @@ const Navbar = () => {
   };
   return (
     <>
-      {" "}
       <nav className="navbar">
         <Hamburger isClosed={isClosed} />
-        <button className="button">Home</button>
+        <button className="button">
+          <Link to="/protected/home">Home</Link>
+        </button>
         <div className="search-bar">
           <input
             autoComplete="off"

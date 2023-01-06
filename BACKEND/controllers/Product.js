@@ -99,7 +99,7 @@ const getAllProducts = async (req, res) => {
   if (!products.length) {
     return res.status(200).json({ products: [], user: req.user.username });
   }
-  console.log({ products });
+
   res.status(200).json({ products, user: req.user.username });
 };
 /**----------------------------------GET ALL PRODUCT------------------------------------ */
